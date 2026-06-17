@@ -1,0 +1,260 @@
+/* =========================================================================
+   ARCANE — Domain components
+   Wordmark · event poster · event card · ticket credential · QR
+   ========================================================================= */
+
+/* ---- Wordmark ------------------------------------------------------- */
+.wordmark { display: inline-flex; align-items: center; gap: var(--space-2); }
+.wordmark__text {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 400;
+  letter-spacing: 0.012em;
+  color: var(--text-1);
+  line-height: 1;
+}
+.wordmark--sm .wordmark__text { font-size: 1.04rem; }
+.wordmark__suffix {
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  padding-left: var(--space-3);
+  margin-left: 2px;
+  border-left: 1px solid var(--line);
+  align-self: center;
+  line-height: 1;
+}
+
+/* ---- Event poster (duotone placeholder) ----------------------------- */
+.poster {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--p2, #0c0b08);
+  isolation: isolate;
+}
+.poster::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(130% 95% at 16% 0%, var(--pg, rgba(201, 168, 106, 0.2)), transparent 55%),
+    linear-gradient(157deg, var(--p1, #2a2113), var(--p2, #0c0b08) 64%);
+}
+.poster::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(150% 130% at 50% 128%, rgba(0, 0, 0, 0.62), transparent 58%);
+}
+.poster__watermark {
+  position: absolute;
+  right: -0.18em;
+  bottom: -0.34em;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(7rem, 24vw, 16rem);
+  line-height: 0.7;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.04);
+  user-select: none;
+  pointer-events: none;
+  letter-spacing: -0.04em;
+}
+
+.poster--amber { --p1: #2a2113; --p2: #0c0b08; --pg: rgba(201, 168, 106, 0.22); }
+.poster--emerald { --p1: #11261f; --p2: #070f0c; --pg: rgba(58, 155, 114, 0.18); }
+.poster--slate { --p1: #161f2b; --p2: #080a0e; --pg: rgba(122, 146, 173, 0.18); }
+.poster--crimson { --p1: #291414; --p2: #0d0707; --pg: rgba(194, 86, 78, 0.18); }
+.poster--violet { --p1: #1d1726; --p2: #0a0810; --pg: rgba(150, 120, 200, 0.16); }
+.poster--mono { --p1: #1c1c20; --p2: #08080a; --pg: rgba(201, 168, 106, 0.1); }
+
+/* ---- Event card (grid) ---------------------------------------------- */
+.ecard {
+  display: flex;
+  flex-direction: column;
+  background: var(--ink-800);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  transition: border-color var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
+}
+.ecard:hover { border-color: var(--line-gold); transform: translateY(-4px); }
+.ecard:hover .ecard__title { color: var(--gold-100); }
+.ecard__poster {
+  position: relative;
+  aspect-ratio: 5 / 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-4);
+}
+.ecard__poster-top { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-2); }
+.ecard__date {
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-1);
+  background: rgba(8, 8, 10, 0.5);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--line);
+  padding: 5px 9px;
+  border-radius: var(--r-pill);
+}
+.ecard__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  color: var(--text-1);
+  line-height: 1.08;
+  transition: color var(--dur) var(--ease-out);
+}
+.ecard__venue { font-size: var(--fs-xs); color: var(--text-2); margin-top: 4px; display: flex; align-items: center; gap: 5px; }
+.ecard__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-5);
+  border-top: 1px solid var(--line-soft);
+}
+.ecard__price { font-size: var(--fs-sm); color: var(--text-1); }
+.ecard__price .from { color: var(--text-3); font-size: var(--fs-xs); margin-right: 4px; }
+.ecard__price .amt { font-family: var(--font-mono); font-weight: 500; }
+.ecard__cat { font-size: var(--fs-xs); color: var(--text-3); display: flex; align-items: center; gap: 6px; }
+
+/* ---- Featured event card (marquee) ---------------------------------- */
+.feature {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  background: var(--ink-800);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  min-height: 460px;
+}
+.feature__poster { position: relative; min-height: 320px; }
+.feature__poster-tag {
+  position: absolute;
+  top: var(--space-5);
+  left: var(--space-5);
+}
+.feature__body { padding: var(--space-9); display: flex; flex-direction: column; justify-content: center; gap: var(--space-5); }
+.feature__title { font-size: clamp(2rem, 1.4rem + 2.4vw, 3rem); line-height: 1.04; }
+.feature__meta { display: flex; flex-wrap: wrap; gap: var(--space-5); }
+.feature__meta-item { display: flex; align-items: center; gap: var(--space-2); font-size: var(--fs-sm); color: var(--text-2); }
+.feature__meta-item svg { width: 16px; height: 16px; color: var(--gold-600); }
+
+@media (max-width: 860px) {
+  .feature { grid-template-columns: 1fr; }
+  .feature__poster { aspect-ratio: 16 / 10; min-height: 0; }
+  .feature__body { padding: var(--space-7); }
+}
+
+/* ---- Ticket credential (the signature "luxury pass") ---------------- */
+.credential {
+  --notch: 18px;
+  position: relative;
+  background: linear-gradient(168deg, var(--ink-750), var(--ink-850));
+  border: 1px solid var(--line-gold);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+.credential::before {
+  /* hairline gold inner frame */
+  content: '';
+  position: absolute;
+  inset: 7px;
+  border: 1px solid rgba(201, 168, 106, 0.16);
+  border-radius: calc(var(--r-lg) - 5px);
+  pointer-events: none;
+}
+.credential__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding: var(--space-6) var(--space-6) var(--space-5);
+}
+.credential__event { font-size: var(--fs-h3); color: var(--text-1); line-height: 1.1; }
+.credential__sub { font-size: var(--fs-sm); color: var(--text-3); margin-top: var(--space-2); }
+.credential__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-5);
+  padding: 0 var(--space-6) var(--space-5);
+}
+.cred-cell__label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-4);
+}
+.cred-cell__value { font-size: var(--fs-sm); color: var(--text-1); margin-top: 5px; }
+.cred-cell__value--mono { font-family: var(--font-mono); }
+
+/* perforation between body and stub */
+.credential__perf {
+  position: relative;
+  height: 1px;
+  margin: var(--space-2) var(--space-6);
+  border-top: 1.5px dashed rgba(201, 168, 106, 0.35);
+}
+.credential__perf::before,
+.credential__perf::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: calc(var(--notch) * 2);
+  height: calc(var(--notch) * 2);
+  border-radius: 50%;
+  background: var(--ink-900);
+  transform: translateY(-50%);
+  border: 1px solid var(--line-gold);
+}
+.credential__perf::before { left: calc(var(--space-6) * -1 - var(--notch)); }
+.credential__perf::after { right: calc(var(--space-6) * -1 - var(--notch)); }
+
+.credential__stub {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  padding: var(--space-5) var(--space-6) var(--space-6);
+}
+.credential__admit {
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold-400);
+}
+.credential__id { font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--text-1); margin-top: 6px; letter-spacing: 0.04em; }
+
+/* QR tile — light, scannable-looking, premium against the dark pass */
+.qr {
+  background: #f4f2ed;
+  border-radius: var(--r-sm);
+  padding: 9px;
+  line-height: 0;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+.qr img { display: block; width: 100%; height: 100%; image-rendering: pixelated; border-radius: 2px; }
+.qr--placeholder {
+  display: grid;
+  place-items: center;
+  color: #0a0a0b;
+  aspect-ratio: 1;
+}
+
+.credential--compact .credential__head { padding: var(--space-5) var(--space-5) var(--space-4); }
+.credential--compact .credential__event { font-size: var(--fs-h4); }
+.credential--compact .credential__grid { padding: 0 var(--space-5) var(--space-4); gap: var(--space-4); }
+.credential--compact .credential__perf { margin-inline: var(--space-5); }
+.credential--compact .credential__perf::before { left: calc(var(--space-5) * -1 - var(--notch)); }
+.credential--compact .credential__perf::after { right: calc(var(--space-5) * -1 - var(--notch)); }
+.credential--compact .credential__stub { padding: var(--space-4) var(--space-5) var(--space-5); }

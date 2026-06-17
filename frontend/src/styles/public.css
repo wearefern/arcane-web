@@ -1,0 +1,262 @@
+/* =========================================================================
+   ARCANE — Public buyer website
+   Top nav · footer · home · events · detail · checkout · payment · tickets
+   ========================================================================= */
+
+/* ---- Top navigation -------------------------------------------------- */
+.pubnav {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-nav);
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  background: rgba(10, 10, 11, 0.72);
+  backdrop-filter: blur(16px) saturate(140%);
+  border-bottom: 1px solid var(--line-soft);
+}
+.pubnav__inner {
+  width: 100%;
+  max-width: var(--container-wide);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+}
+.pubnav__links { display: flex; align-items: center; gap: var(--space-2); }
+.pubnav__link {
+  position: relative;
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--fs-sm);
+  color: var(--text-3);
+  border-radius: var(--r-sm);
+  transition: color var(--dur) var(--ease-out);
+}
+.pubnav__link:hover { color: var(--text-1); }
+.pubnav__link.is-active { color: var(--text-1); }
+.pubnav__link.is-active::after {
+  content: '';
+  position: absolute;
+  left: var(--space-4);
+  right: var(--space-4);
+  bottom: -1px;
+  height: 1.5px;
+  background: var(--gold-500);
+}
+.pubnav__right { display: flex; align-items: center; gap: var(--space-3); }
+.pubnav__toggle { display: none; }
+
+@media (max-width: 768px) {
+  .pubnav__links,
+  .pubnav__right .btn { display: none; }
+  .pubnav__toggle { display: inline-flex; }
+}
+
+/* mobile menu sheet */
+.pubmenu {
+  position: fixed;
+  inset: var(--nav-h) 0 auto 0;
+  z-index: var(--z-drawer);
+  background: var(--ink-850);
+  border-bottom: 1px solid var(--line);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  animation: rise var(--dur) var(--ease-out);
+}
+.pubmenu a {
+  padding: var(--space-4);
+  border-radius: var(--r-sm);
+  color: var(--text-2);
+  font-size: var(--fs-lg);
+}
+.pubmenu a.is-active { color: var(--gold-200); background: var(--gold-wash); }
+
+/* ---- Footer ---------------------------------------------------------- */
+.foot {
+  margin-top: auto;
+  border-top: 1px solid var(--line-soft);
+  background: var(--ink-850);
+}
+.foot__inner {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: var(--space-8);
+  padding-block: var(--space-9);
+}
+.foot__tag { color: var(--text-3); margin-top: var(--space-4); max-width: 30ch; font-size: var(--fs-sm); }
+.foot__col h4 {
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  font-weight: 500;
+  margin-bottom: var(--space-4);
+}
+.foot__col a { display: block; color: var(--text-2); font-size: var(--fs-sm); padding: var(--space-2) 0; }
+.foot__col a:hover { color: var(--gold-200); }
+.foot__bar {
+  border-top: 1px solid var(--line-soft);
+  padding-block: var(--space-5);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+  color: var(--text-4);
+  font-size: var(--fs-xs);
+  flex-wrap: wrap;
+}
+@media (max-width: 768px) {
+  .foot__inner { grid-template-columns: 1fr 1fr; gap: var(--space-7); }
+  .foot__brand { grid-column: 1 / -1; }
+}
+
+/* ---- Page header (public) ------------------------------------------- */
+.pagehead { padding-block: var(--space-9) var(--space-7); }
+.pagehead__title { font-size: var(--fs-h1); margin-top: var(--space-4); }
+.pagehead__sub { color: var(--text-3); margin-top: var(--space-4); max-width: 56ch; }
+
+/* ---- Hero ------------------------------------------------------------ */
+.hero { position: relative; padding-block: var(--space-12) var(--space-10); }
+.hero__eyebrow { margin-bottom: var(--space-6); }
+.hero__title { font-size: var(--fs-display); max-width: 15ch; }
+.hero__sub { margin-top: var(--space-6); max-width: 48ch; }
+.hero__actions { margin-top: var(--space-8); display: flex; gap: var(--space-3); flex-wrap: wrap; }
+.hero__strip {
+  margin-top: var(--space-10);
+  padding-top: var(--space-7);
+  border-top: 1px solid var(--line-soft);
+  display: flex;
+  gap: var(--space-9);
+  flex-wrap: wrap;
+}
+.hero__stat-num { font-family: var(--font-display); font-size: var(--fs-h2); color: var(--text-1); }
+.hero__stat-label { font-size: var(--fs-xs); color: var(--text-3); margin-top: 2px; }
+
+/* ---- Search + filter bar -------------------------------------------- */
+.filterbar {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  align-items: center;
+}
+.filterbar__search { flex: 1 1 280px; min-width: 0; }
+.chips { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+
+/* ---- Event grid ------------------------------------------------------ */
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-6);
+}
+@media (max-width: 520px) {
+  .event-grid { grid-template-columns: 1fr; }
+}
+
+/* ---- Event detail ---------------------------------------------------- */
+.detail-banner {
+  position: relative;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  min-height: 420px;
+  display: flex;
+  align-items: flex-end;
+  padding: var(--space-9);
+}
+.detail-banner__content { position: relative; max-width: 40ch; }
+.detail-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: var(--space-9);
+  align-items: start;
+  margin-top: var(--space-9);
+}
+.detail-aside { position: sticky; top: calc(var(--nav-h) + var(--space-5)); display: flex; flex-direction: column; gap: var(--space-4); }
+.tickettype {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--ink-800);
+  transition: border-color var(--dur) var(--ease-out);
+}
+.tickettype:hover { border-color: var(--line-strong); }
+.tickettype.is-selected { border-color: var(--gold-600); background: var(--gold-wash); }
+.tickettype__price { font-family: var(--font-mono); font-size: var(--fs-lg); color: var(--text-1); }
+.prose { max-width: 62ch; color: var(--text-2); line-height: var(--lh-relaxed); }
+.prose p + p { margin-top: var(--space-4); }
+
+@media (max-width: 920px) {
+  .detail-layout { grid-template-columns: 1fr; }
+  .detail-aside { position: static; }
+  .detail-banner { min-height: 320px; padding: var(--space-6); }
+}
+
+/* ---- Checkout -------------------------------------------------------- */
+.checkout-layout {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: var(--space-9);
+  align-items: start;
+}
+.checkout-summary { position: sticky; top: calc(var(--nav-h) + var(--space-5)); }
+.paymethod {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  cursor: pointer;
+  transition: border-color var(--dur) var(--ease-out), background var(--dur) var(--ease-out);
+}
+.paymethod:hover { border-color: var(--line-strong); }
+.paymethod.is-selected { border-color: var(--gold-600); background: var(--gold-wash); }
+.paymethod__radio {
+  width: 18px; height: 18px; border-radius: 50%;
+  border: 1.5px solid var(--line-strong);
+  display: grid; place-items: center; flex-shrink: 0;
+}
+.paymethod.is-selected .paymethod__radio { border-color: var(--gold-500); }
+.paymethod.is-selected .paymethod__radio::after { content: ''; width: 9px; height: 9px; border-radius: 50%; background: var(--gold-500); }
+.paymethod__logo {
+  width: 44px; height: 44px; border-radius: var(--r-sm);
+  display: grid; place-items: center; flex-shrink: 0;
+  background: var(--ink-700); border: 1px solid var(--line);
+  font-family: var(--font-display); color: var(--gold-200); font-size: 1.1rem;
+}
+
+@media (max-width: 920px) {
+  .checkout-layout { grid-template-columns: 1fr; }
+  .checkout-summary { position: static; order: -1; }
+}
+
+/* ---- Centered status pages (payment / lookup) ----------------------- */
+.centered-wrap {
+  min-height: calc(100dvh - var(--nav-h));
+  display: grid;
+  place-items: center;
+  padding: var(--space-8) var(--space-5);
+}
+.status-card { width: 100%; max-width: 480px; text-align: center; }
+.status-mark {
+  width: 64px; height: 64px; border-radius: 50%;
+  display: grid; place-items: center; margin: 0 auto var(--space-6);
+  border: 1px solid var(--line);
+}
+.status-mark svg { width: 30px; height: 30px; }
+.status-mark--success { background: var(--emerald-wash); border-color: rgba(58, 155, 114, 0.3); color: var(--emerald-300); }
+.status-mark--failed { background: var(--oxblood-wash); border-color: rgba(194, 86, 78, 0.3); color: var(--oxblood-300); }
+.status-mark--pending { background: var(--amber-wash); border-color: rgba(199, 155, 79, 0.3); color: var(--amber-300); }
+
+/* my tickets results */
+.ticket-results { display: grid; gap: var(--space-5); }
+@media (min-width: 720px) {
+  .ticket-results--multi { grid-template-columns: repeat(2, 1fr); }
+}

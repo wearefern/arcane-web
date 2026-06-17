@@ -1,0 +1,45 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return signedIn()
+        && exists(/databases/$(database)/documents/adminUsers/$(request.auth.uid));
+    }
+
+    match /events/{eventId} {
+      allow read: if resource.data.status == "published" || isAdmin();
+      allow write: if isAdmin();
+    }
+
+    match /ticketTypes/{ticketTypeId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /adminUsers/{userId} {
+      allow read, write: if isAdmin();
+    }
+
+    match /orders/{orderId} {
+      allow read, write: if isAdmin();
+    }
+
+    match /tickets/{ticketId} {
+      allow read, write: if isAdmin();
+    }
+
+    match /scanLogs/{scanLogId} {
+      allow read, write: if isAdmin();
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

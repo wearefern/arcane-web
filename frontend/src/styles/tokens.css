@@ -1,0 +1,152 @@
+/* =========================================================================
+   ARCANE — Design Tokens
+   Warm near-black surfaces · muted champagne gold · editorial type.
+   All colour, type, spacing, motion decisions live here.
+   ========================================================================= */
+
+:root {
+  color-scheme: dark;
+
+  /* ---- Surfaces (warm near-black → graphite) -------------------------- */
+  --ink-1000: #060607; /* deepest — behind everything */
+  --ink-900: #0a0a0b;  /* page background */
+  --ink-850: #0e0e11;  /* alternating section / subtle panel */
+  --ink-800: #131316;  /* card surface */
+  --ink-750: #17171b;  /* elevated card / popover */
+  --ink-700: #1c1c21;  /* input / control surface */
+  --ink-650: #232329;  /* hover surface */
+  --ink-600: #2b2b32;  /* pressed / strong fill */
+
+  /* ---- Lines & borders (light over dark) ------------------------------ */
+  --line-soft: rgba(255, 255, 255, 0.055);
+  --line: rgba(255, 255, 255, 0.09);
+  --line-strong: rgba(255, 255, 255, 0.15);
+  --line-gold: rgba(201, 168, 106, 0.32);
+
+  /* ---- Text (warm whites → muted grays) ------------------------------- */
+  --text-1: #f4f2ed; /* primary — warm white */
+  --text-2: #b9b6ae; /* secondary */
+  --text-3: #908d86; /* metadata / muted (AA on ink-900) */
+  --text-4: #5f5d58; /* faint / disabled */
+  --on-gold: #1a1407; /* text on gold fills */
+  --on-emerald: #eafff4;
+  --on-oxblood: #ffece9;
+
+  /* ---- Champagne gold accent ------------------------------------------ */
+  --gold-50: #f7efd9;
+  --gold-100: #f0e4c2;
+  --gold-200: #e7d4a3;
+  --gold-300: #ddc488; /* bright hover */
+  --gold-400: #d2b576;
+  --gold-500: #c9a86a; /* PRIMARY accent */
+  --gold-600: #b2925a;
+  --gold-700: #8c7142; /* deep bronze — borders/pressed */
+  --gold-800: #5f4d2e;
+  --gold-glow: rgba(201, 168, 106, 0.16);
+  --gold-wash: rgba(201, 168, 106, 0.08);
+
+  /* ---- Semantic (deep, desaturated; used sparingly) ------------------- */
+  --emerald-300: #7fd3a8;
+  --emerald-500: #3a9b72;
+  --emerald-700: #1c6b4b;
+  --emerald-900: #0e3326;
+  --emerald-wash: rgba(58, 155, 114, 0.12);
+
+  --oxblood-300: #e89a93;
+  --oxblood-500: #c2564e;
+  --oxblood-700: #8c2f2b;
+  --oxblood-900: #3f1311;
+  --oxblood-wash: rgba(194, 86, 78, 0.12);
+
+  --amber-300: #e3c485;
+  --amber-500: #c79b4f;
+  --amber-700: #7a5d28;
+  --amber-wash: rgba(199, 155, 79, 0.12);
+
+  --slate-300: #9db4cf;
+  --slate-wash: rgba(122, 146, 173, 0.12);
+
+  /* ---- Typography ----------------------------------------------------- */
+  --font-display: 'Fraunces', 'Times New Roman', Georgia, serif;
+  --font-sans: 'Geist', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, 'SFMono-Regular', 'Consolas', monospace;
+
+  /* fluid type scale */
+  --fs-display: clamp(2.85rem, 1.6rem + 5.4vw, 5.5rem);
+  --fs-h1: clamp(2.1rem, 1.4rem + 2.9vw, 3.4rem);
+  --fs-h2: clamp(1.6rem, 1.2rem + 1.7vw, 2.35rem);
+  --fs-h3: clamp(1.28rem, 1.08rem + 0.85vw, 1.6rem);
+  --fs-h4: 1.18rem;
+  --fs-lg: 1.0625rem;
+  --fs-base: 0.975rem;
+  --fs-sm: 0.875rem;
+  --fs-xs: 0.785rem;
+  --fs-2xs: 0.7rem;
+
+  --lh-tight: 1.08;
+  --lh-snug: 1.28;
+  --lh-base: 1.6;
+  --lh-relaxed: 1.72;
+
+  --tracking-tight: -0.02em;
+  --tracking-snug: -0.01em;
+  --tracking-wide: 0.04em;
+  --tracking-eyebrow: 0.22em;
+  --tracking-wordmark: 0.42em;
+
+  /* ---- Spacing scale (4px base) --------------------------------------- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-7: 2rem;
+  --space-8: 2.5rem;
+  --space-9: 3rem;
+  --space-10: 4rem;
+  --space-11: 5rem;
+  --space-12: 6rem;
+  --space-13: 8rem;
+
+  /* ---- Radii ---------------------------------------------------------- */
+  --r-xs: 6px;
+  --r-sm: 8px;
+  --r-md: 11px;
+  --r-lg: 14px;
+  --r-xl: 20px;
+  --r-2xl: 28px;
+  --r-pill: 999px;
+
+  /* ---- Elevation (restrained) ----------------------------------------- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 12px 34px -16px rgba(0, 0, 0, 0.75);
+  --shadow-pop: 0 24px 60px -24px rgba(0, 0, 0, 0.82), 0 2px 8px rgba(0, 0, 0, 0.5);
+  --shadow-gold: 0 0 0 1px var(--line-gold), 0 14px 40px -22px var(--gold-glow);
+
+  /* ---- Motion --------------------------------------------------------- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast: 140ms;
+  --dur: 220ms;
+  --dur-slow: 380ms;
+
+  /* ---- Layout --------------------------------------------------------- */
+  --container: 1200px;
+  --container-wide: 1340px;
+  --container-narrow: 760px;
+  --container-prose: 640px;
+  --nav-h: 72px;
+  --sidebar-w: 264px;
+  --scanbar-h: 64px;
+
+  /* ---- Z-index scale -------------------------------------------------- */
+  --z-base: 1;
+  --z-sticky: 40;
+  --z-nav: 50;
+  --z-dropdown: 60;
+  --z-drawer: 80;
+  --z-modal: 100;
+  --z-toast: 120;
+}
