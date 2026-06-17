@@ -1,0 +1,18 @@
+# Netlify configuration for Arcane (Vite app in the frontend/ subdirectory).
+# Paths are relative to `base`, so publish "dist" resolves to frontend/dist.
+
+[build]
+  base = "frontend"
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  # Vite 8 requires Node >= 20.19 / 22.12
+  NODE_VERSION = "22"
+
+# SPA fallback: client-side routing (React Router) needs every path served
+# index.html so deep links and refreshes don't 404.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
