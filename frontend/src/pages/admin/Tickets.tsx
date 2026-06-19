@@ -48,9 +48,11 @@ export default function Tickets() {
 
   useEffect(() => {
     let active = true;
+    /* eslint-disable react-hooks/set-state-in-effect -- intentional reset keyed on filters before fetch */
     setTickets(null);
     setError(false);
     setPage(1); // new filter set → back to the first page
+    /* eslint-enable react-hooks/set-state-in-effect */
     listTickets({ search, eventId: eventId === 'all' ? undefined : eventId, status })
       .then((rows) => active && setTickets(rows))
       .catch(() => active && setError(true));

@@ -28,11 +28,13 @@ export default function EventDetail() {
   const [event, setEvent] = useState<EventWithTickets | null>(null);
   const [status, setStatus] = useState<'loading' | 'ready' | 'error' | 'missing'>('loading');
   const [selectedId, setSelectedId] = useState<string>('');
-  const [qty, setQty] = useState(1);
+  const [rawQty, setRawQty] = useState(1);
 
   useEffect(() => {
     if (!slug) return;
     let active = true;
+    // Reset to the loading state when the slug changes, then fetch.
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional reset keyed on slug before fetch
     setStatus('loading');
     getEventBySlug(slug)
       .then((e) => {
@@ -59,10 +61,9 @@ export default function EventDetail() {
   const maxQty = selected
     ? Math.max(1, Math.min(selected.perOrderLimit, ticketsAvailable(selected)))
     : 1;
-
-  useEffect(() => {
-    setQty((q) => Math.min(Math.max(1, q), maxQty));
-  }, [maxQty]);
+  // Clamp during render rather than in an effect — keeps qty within bounds when the
+  // selected ticket type (and thus maxQty) changes, without a cascading re-render.
+  const qty = Math.min(Math.max(1, rawQty), maxQty);
 
   if (status === 'loading') return <div className="container section"><LoadingBlock label="Loading event…" /></div>;
   if (status === 'missing')
@@ -190,7 +191,7 @@ export default function EventDetail() {
 
               <div className="row row--between">
                 <span className="meta">Quantity</span>
-                <Stepper value={qty} onChange={setQty} min={1} max={maxQty} />
+                <Stepper value={qty} onChange={setRawQty} min={1} max={maxQty} />
               </div>
 
               <div className="row row--between" style={{ marginTop: 'var(--space-5)' }}>

@@ -56,9 +56,11 @@ export default function ScanLogs() {
 
   useEffect(() => {
     let active = true;
+    /* eslint-disable react-hooks/set-state-in-effect -- intentional reset keyed on filters before fetch */
     setLogs(null);
     setError(false);
     setPage(1); // new filter set → back to the first page
+    /* eslint-enable react-hooks/set-state-in-effect */
     listScanLogs({ search, eventId: eventId === 'all' ? undefined : eventId, result })
       .then((rows) => active && setLogs(rows))
       .catch(() => active && setError(true));

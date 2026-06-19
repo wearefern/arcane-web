@@ -50,6 +50,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components -- hook shares the private context with <ToastProvider>
 export function useToast(): ToastCtx {
   const ctx = useContext(Ctx);
   if (!ctx) return { toast: () => {} };
