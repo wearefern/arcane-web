@@ -496,6 +496,15 @@
     radial-gradient(ellipse 70% 36% at 22% 42%, rgba(92, 42, 150, 0.045), transparent 72%),
     radial-gradient(ellipse 62% 30% at 78% 76%, rgba(124, 58, 237, 0.055), transparent 74%);
 }
+.route-transition {
+  min-height: 100%;
+  animation: route-enter 520ms var(--ease-out) both;
+  transform-origin: 50% 0;
+}
+@keyframes route-enter {
+  from { opacity: 0; transform: translateY(14px) scale(0.998); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
 .cosmic-section::after {
   content: '';
   position: absolute;
@@ -536,7 +545,8 @@
 @media (prefers-reduced-motion: reduce) {
   .cosmic-section::before,
   .cosmic-section::after,
-  .cosmic-section__content { animation: none; transition: none; }
+  .cosmic-section__content,
+  .route-transition { animation: none; transition: none; }
 }
 
 @media (max-width: 920px) {

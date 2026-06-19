@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { NavLink, Link, Outlet, useLocation } from 'react-router-dom';
 import { Menu, X, Ticket, Sparkles } from 'lucide-react';
 import { Wordmark } from '../components/brand/Wordmark';
@@ -19,6 +19,13 @@ export function PublicLayout() {
 
   // close the mobile sheet whenever the route changes
   const pathKey = location.pathname;
+
+  // Client-side route changes retain the previous document scroll position.
+  // Reset before paint so checkout and other destination pages always open at
+  // their header instead of inheriting a footer-level position.
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, [location.pathname, location.search]);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -84,7 +91,9 @@ export function PublicLayout() {
       )}
 
       <main id="main" className="cosmic-route-surface" style={{ flex: 1 }}>
-        <Outlet />
+        <div className="route-transition" key={`${location.pathname}${location.search}`}>
+          <Outlet />
+        </div>
       </main>
 
       <footer className="foot">
