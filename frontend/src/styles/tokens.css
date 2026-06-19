@@ -68,8 +68,8 @@
 
   /* ---- Typography ----------------------------------------------------- */
   --font-display: 'Fraunces', 'Times New Roman', Georgia, serif;
-  --font-sans: 'Geist', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'Geist Mono', ui-monospace, 'SFMono-Regular', 'Consolas', monospace;
+  --font-sans: 'Albert Sans', system-ui, sans-serif;
+  --font-mono: 'Albert Sans', system-ui, sans-serif;
 
   /* fluid type scale */
   --fs-display: clamp(2.85rem, 1.6rem + 5.4vw, 5.5rem);
@@ -133,13 +133,14 @@
   --dur-slow: 380ms;
 
   /* ---- Layout --------------------------------------------------------- */
-  --container: 1200px;
-  --container-wide: 1340px;
+  --container: 1680px;
+  --container-wide: 1680px;
   --container-narrow: 760px;
   --container-prose: 640px;
   --nav-h: 72px;
   --sidebar-w: 264px;
   --scanbar-h: 64px;
+  --page-gutter: 16px;
 
   /* ---- Z-index scale -------------------------------------------------- */
   --z-base: 1;
@@ -149,4 +150,15 @@
   --z-drawer: 80;
   --z-modal: 100;
   --z-toast: 120;
+}
+
+@media (min-width: 430px) { :root { --page-gutter: 20px; } }
+@media (min-width: 768px) { :root { --page-gutter: 32px; } }
+@media (min-width: 1024px) { :root { --page-gutter: 48px; } }
+@media (min-width: 1440px) { :root { --page-gutter: 72px; } }
+@media (max-width: 639px) {
+  :root {
+    --fs-xs: 0.875rem;
+    --fs-2xs: 0.875rem;
+  }
 }

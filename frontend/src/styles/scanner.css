@@ -21,7 +21,7 @@
   justify-content: space-between;
   gap: var(--space-3);
   height: var(--scanbar-h);
-  padding-inline: var(--space-5);
+  padding-inline: var(--page-gutter);
   background: var(--ink-850);
   border-bottom: 1px solid var(--line-soft);
 }
