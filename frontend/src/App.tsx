@@ -5,6 +5,7 @@ import { PublicLayout } from './layouts/PublicLayout';
 import { AdminLayout } from './layouts/AdminLayout';
 import { ScannerLayout } from './layouts/ScannerLayout';
 import { LoadingBlock } from './components/ui/Feedback';
+import { CosmicAtmosphereProvider } from './components/layout/CosmicAtmosphereProvider';
 
 /* Public */
 const Home = lazy(() => import('./pages/public/Home'));
@@ -48,6 +49,7 @@ function Fallback() {
 
 export default function App() {
   return (
+    <CosmicAtmosphereProvider>
     <ToastProvider>
       <BrowserRouter>
         <Suspense fallback={<Fallback />}>
@@ -93,5 +95,6 @@ export default function App() {
         </Suspense>
       </BrowserRouter>
     </ToastProvider>
+    </CosmicAtmosphereProvider>
   );
 }

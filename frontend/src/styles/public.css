@@ -442,7 +442,7 @@
   content: '';
   position: absolute;
   inset: -30%;
-  z-index: 0;
+  z-index: -1;
   pointer-events: none;
   opacity: 0;
   background:
@@ -452,6 +452,14 @@
   filter: blur(42px);
   transform: scale(0.96) translateY(20px);
   transition: opacity 900ms var(--ease-out), transform 1200ms var(--ease-out);
+}
+
+.cosmic-route-surface {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse 70% 36% at 22% 42%, rgba(92, 42, 150, 0.045), transparent 72%),
+    radial-gradient(ellipse 62% 30% at 78% 76%, rgba(124, 58, 237, 0.055), transparent 74%);
 }
 .cosmic-section::after {
   content: '';
@@ -507,7 +515,25 @@
   gap: var(--space-9);
   align-items: start;
 }
-.checkout-summary { position: sticky; top: calc(var(--nav-h) + var(--space-5)); }
+.checkout-layout > * { min-width: 0; }
+.checkout-glow { border-radius: var(--r-xl); }
+.checkout-glow::before {
+  background:
+    radial-gradient(circle at 65% 35%, rgba(168, 85, 247, 0.14), transparent 42%),
+    radial-gradient(circle at 30% 70%, rgba(76, 29, 149, 0.09), transparent 48%);
+}
+.checkout-glow--summary { position: sticky; top: calc(var(--nav-h) + var(--space-5)); width: 100%; }
+.checkout-glow--summary .card {
+  width: 100%;
+  background: rgba(12, 12, 18, 0.82);
+  border-color: rgba(168, 85, 247, 0.18);
+  box-shadow: 0 24px 70px -42px rgba(136, 70, 232, 0.5), inset 0 1px rgba(255,255,255,0.025);
+  backdrop-filter: blur(18px);
+}
+.checkout-glow .label,
+.checkout-glow .t-1 { color: rgba(245, 243, 255, 0.92); }
+.checkout-glow .meta,
+.checkout-glow .helper { color: rgba(226, 220, 240, 0.68); }
 .paymethod {
   display: flex;
   align-items: center;
@@ -536,7 +562,19 @@
 
 @media (max-width: 920px) {
   .checkout-layout { grid-template-columns: 1fr; }
-  .checkout-summary { position: static; order: -1; }
+  .checkout-summary { position: static; order: -1; width: 100%; max-width: 100%; }
+  .checkout-glow--summary .card { max-width: 100%; }
+}
+
+@media (max-width: 560px) {
+  .checkout-layout { gap: var(--space-6); }
+  .checkout-glow { overflow: visible; }
+  .checkout-glow::before { inset: -14%; }
+  .checkout-glow--summary .card { padding: var(--space-5); }
+  .checkout-glow--summary .row--between { gap: var(--space-3); flex-wrap: wrap; }
+  .checkout-glow--summary .stepper { margin-left: auto; }
+  .checkout-glow--summary .dl__row { flex-wrap: wrap; }
+  .checkout-glow--summary .dl__val { margin-left: auto; }
 }
 
 /* ---- Centered status pages (payment / lookup) ----------------------- */

@@ -4,7 +4,6 @@ import { Menu, X, Ticket, Sparkles } from 'lucide-react';
 import { Wordmark } from '../components/brand/Wordmark';
 import { buttonClass } from '../components/ui/Button';
 import { cn } from '../lib/cn';
-import { AnimatedBackground } from '../components/layout/AnimatedBackground';
 import { ScrollGlowSection } from '../components/motion/ScrollGlowSection';
 
 const LINKS = [
@@ -29,7 +28,6 @@ export function PublicLayout() {
 
   return (
     <>
-      <AnimatedBackground />
       <a href="#main" className="skip-link">Skip to content</a>
       <header className={cn('pubnav', scrolled && 'is-scrolled')}>
         <div className="pubnav__inner">
@@ -85,7 +83,7 @@ export function PublicLayout() {
         </nav>
       )}
 
-      <main id="main" style={{ flex: 1 }}>
+      <main id="main" className="cosmic-route-surface" style={{ flex: 1 }}>
         <Outlet />
       </main>
 

@@ -168,9 +168,10 @@
    ====================================================================== */
 .card {
   position: relative;
-  background: var(--ink-800);
+  background: rgba(15, 14, 22, 0.84);
   border: 1px solid var(--line);
   border-radius: var(--r-lg);
+  box-shadow: 0 20px 60px -48px rgba(124, 58, 237, 0.6);
   transition: border-color var(--dur) var(--ease-out), transform var(--dur) var(--ease-out),
     background var(--dur) var(--ease-out);
 }
@@ -183,7 +184,7 @@
 .card--hover:hover { border-color: var(--line-gold); transform: translateY(-3px); }
 
 .panel {
-  background: var(--ink-850);
+  background: rgba(9, 9, 13, 0.8);
   border: 1px solid var(--line-soft);
   border-radius: var(--r-lg);
 }
@@ -567,7 +568,8 @@
 .modal {
   width: 100%;
   max-width: 460px;
-  background: var(--ink-800);
+  background: rgba(15, 14, 22, 0.92);
+  backdrop-filter: blur(20px);
   border: 1px solid var(--line-strong);
   border-radius: var(--r-xl);
   box-shadow: var(--shadow-pop);

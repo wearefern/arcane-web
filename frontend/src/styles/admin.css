@@ -7,6 +7,9 @@
   display: grid;
   grid-template-columns: var(--sidebar-w) 1fr;
   min-height: 100dvh;
+  background:
+    radial-gradient(ellipse 55% 32% at 82% 12%, rgba(124, 58, 237, 0.055), transparent 74%),
+    radial-gradient(ellipse 60% 34% at 28% 76%, rgba(88, 28, 135, 0.04), transparent 76%);
 }
 
 /* ---- Sidebar --------------------------------------------------------- */
@@ -67,7 +70,7 @@
 .sidebar__user-role { font-size: var(--fs-2xs); color: var(--text-3); font-family: var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; }
 
 /* ---- Topbar ---------------------------------------------------------- */
-.admin-main { display: flex; flex-direction: column; min-width: 0; }
+.admin-main { display: flex; flex-direction: column; min-width: 0; background: rgba(3, 3, 5, 0.18); }
 .topbar {
   position: sticky;
   top: 0;
@@ -220,6 +223,7 @@
   display: grid;
   place-items: center;
   padding: var(--space-6);
+  background: radial-gradient(circle at 50% 42%, rgba(124, 58, 237, 0.09), transparent 48%);
 }
 .auth-card { width: 100%; max-width: 410px; }
 .auth-card__head { margin-bottom: var(--space-7); }

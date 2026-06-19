@@ -19,6 +19,7 @@ import { Skeleton, StateBlock } from '../../components/ui/Feedback';
 import { useToast } from '../../components/ui/Toast';
 import { formatDate, formatLkr, formatTime, plural } from '../../lib/format';
 import { cn } from '../../lib/cn';
+import { ScrollGlowSection } from '../../components/motion/ScrollGlowSection';
 
 const FEE_RATE = 0.025;
 
@@ -233,7 +234,7 @@ export default function Checkout() {
         <form className="checkout-layout" onSubmit={handleSubmit} noValidate>
           {/* ---- LEFT: buyer + payment ---- */}
           <div className="stack" style={{ ['--gap' as string]: 'var(--space-7)' }}>
-            <section aria-labelledby="buyer-heading">
+            <ScrollGlowSection className="checkout-glow" aria-labelledby="buyer-heading">
               <h2
                 className="eyebrow eyebrow--plain"
                 id="buyer-heading"
@@ -280,9 +281,9 @@ export default function Checkout() {
                   />
                 </Field>
               </div>
-            </section>
+            </ScrollGlowSection>
 
-            <section aria-labelledby="pay-heading">
+            <ScrollGlowSection className="checkout-glow" aria-labelledby="pay-heading">
               <h2
                 className="eyebrow eyebrow--plain"
                 id="pay-heading"
@@ -322,9 +323,9 @@ export default function Checkout() {
                   );
                 })}
               </div>
-            </section>
+            </ScrollGlowSection>
 
-            <section>
+            <ScrollGlowSection className="checkout-glow checkout-glow--terms">
               <Field error={errors.terms}>
                 <Checkbox
                   checked={agreed}
@@ -340,11 +341,12 @@ export default function Checkout() {
                   }
                 />
               </Field>
-            </section>
+            </ScrollGlowSection>
           </div>
 
           {/* ---- RIGHT: summary ---- */}
-          <Card className="checkout-summary" pad="lg">
+          <ScrollGlowSection className="checkout-summary checkout-glow checkout-glow--summary">
+          <Card pad="lg">
             <p className="eyebrow eyebrow--plain" style={{ color: 'var(--text-3)' }}>
               Order summary
             </p>
@@ -447,6 +449,7 @@ export default function Checkout() {
               />
             )}
           </Card>
+          </ScrollGlowSection>
         </form>
       </div>
     </section>

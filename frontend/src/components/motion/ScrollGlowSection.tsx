@@ -1,7 +1,11 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type HTMLAttributes, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
 
-export function ScrollGlowSection({ children, className }: { children: ReactNode; className?: string }) {
+interface ScrollGlowSectionProps extends Omit<HTMLAttributes<HTMLElement>, 'children'> {
+  children: ReactNode;
+}
+
+export function ScrollGlowSection({ children, className, ...rest }: ScrollGlowSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 
@@ -17,7 +21,7 @@ export function ScrollGlowSection({ children, className }: { children: ReactNode
   }, []);
 
   return (
-    <section ref={sectionRef} className={cn('cosmic-section', visible && 'is-visible', className)}>
+    <section ref={sectionRef} className={cn('cosmic-section', visible && 'is-visible', className)} {...rest}>
       <div className="cosmic-section__content">{children}</div>
     </section>
   );
