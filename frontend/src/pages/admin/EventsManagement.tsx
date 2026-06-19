@@ -32,6 +32,7 @@ export default function EventsManagement() {
 
   useEffect(() => {
     let active = true;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional reset before fetch
     setError(false);
     listAllEvents()
       .then((rows) => active && setEvents(rows))

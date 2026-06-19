@@ -5,6 +5,7 @@ type Variant = 'gold' | 'ghost' | 'quiet' | 'outline' | 'danger';
 type Size = 'sm' | 'md' | 'lg';
 
 /** Compose button classes — handy for React Router <Link className={buttonClass(...)}>. */
+// eslint-disable-next-line react-refresh/only-export-components -- helper intentionally co-located with <Button>
 export function buttonClass(variant: Variant = 'ghost', size: Size = 'md', extra?: string): string {
   return cn(
     'btn',

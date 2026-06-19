@@ -26,11 +26,13 @@ export default function OrderDetail() {
 
   useEffect(() => {
     let active = true;
+    /* eslint-disable react-hooks/set-state-in-effect -- intentional reset keyed on id before fetch */
     setLoading(true);
     setNotFound(false);
     setError(false);
     setOrder(null);
     setTickets(null);
+    /* eslint-enable react-hooks/set-state-in-effect */
 
     getOrder(id)
       .then(async (found) => {
