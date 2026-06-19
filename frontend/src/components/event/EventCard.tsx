@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { MapPin, ArrowUpRight } from 'lucide-react';
+import { MapPin, ArrowRight } from 'lucide-react';
 import type { EventItem } from '../../types';
 import { EventPoster } from './EventPoster';
 import { Badge } from '../ui/Badge';
@@ -18,21 +18,18 @@ export function EventCard({ event }: { event: EventItem }) {
             <Badge tone="oxblood">Sold out</Badge>
           ) : null}
         </div>
-        <div>
-          <h3 className="ecard__title">{event.title}</h3>
-          <p className="ecard__venue">
-            <MapPin size={12} /> {event.venue}, {event.city}
-          </p>
-        </div>
       </EventPoster>
+      <div className="ecard__body">
+        <p className="ecard__category">{event.category}</p>
+        <h3 className="ecard__title">{event.title}</h3>
+        <p className="ecard__venue"><MapPin size={13} /> {event.venue}, {event.city}</p>
+      </div>
       <div className="ecard__foot">
         <span className="ecard__price">
           <span className="from">From</span>
           <span className="amt">{formatLkr(event.priceFromLkr)}</span>
         </span>
-        <span className="ecard__cat">
-          {event.category} <ArrowUpRight size={14} />
-        </span>
+        <span className="ecard__arrow" aria-hidden><ArrowRight size={16} /></span>
       </div>
     </Link>
   );

@@ -44,8 +44,8 @@ body::before {
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(120% 70% at 50% -10%, rgba(201, 168, 106, 0.06), transparent 60%),
-    radial-gradient(90% 60% at 85% 0%, rgba(122, 146, 173, 0.035), transparent 55%);
+    radial-gradient(120% 70% at 50% -10%, rgba(140, 72, 255, 0.07), transparent 60%),
+    radial-gradient(90% 60% at 85% 0%, rgba(174, 123, 255, 0.07), transparent 55%);
 }
 
 body::after {
@@ -157,7 +157,7 @@ hr {
 }
 
 ::selection {
-  background: rgba(201, 168, 106, 0.26);
+  background: rgba(157, 99, 255, 0.32);
   color: var(--text-1);
 }
 

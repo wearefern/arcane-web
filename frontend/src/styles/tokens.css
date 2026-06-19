@@ -8,42 +8,42 @@
   color-scheme: dark;
 
   /* ---- Surfaces (warm near-black → graphite) -------------------------- */
-  --ink-1000: #060607; /* deepest — behind everything */
-  --ink-900: #0a0a0b;  /* page background */
-  --ink-850: #0e0e11;  /* alternating section / subtle panel */
-  --ink-800: #131316;  /* card surface */
-  --ink-750: #17171b;  /* elevated card / popover */
-  --ink-700: #1c1c21;  /* input / control surface */
-  --ink-650: #232329;  /* hover surface */
-  --ink-600: #2b2b32;  /* pressed / strong fill */
+  --ink-1000: #030305;
+  --ink-900: #050508;
+  --ink-850: #09090d;
+  --ink-800: #0f0e16;
+  --ink-750: #15131e;
+  --ink-700: #1a1725;
+  --ink-650: #211d30;
+  --ink-600: #2b2540;
 
   /* ---- Lines & borders (light over dark) ------------------------------ */
-  --line-soft: rgba(255, 255, 255, 0.055);
-  --line: rgba(255, 255, 255, 0.09);
-  --line-strong: rgba(255, 255, 255, 0.15);
-  --line-gold: rgba(201, 168, 106, 0.32);
+  --line-soft: rgba(201, 184, 255, 0.07);
+  --line: rgba(201, 184, 255, 0.13);
+  --line-strong: rgba(201, 184, 255, 0.24);
+  --line-gold: rgba(174, 137, 255, 0.48);
 
   /* ---- Text (warm whites → muted grays) ------------------------------- */
-  --text-1: #f4f2ed; /* primary — warm white */
-  --text-2: #b9b6ae; /* secondary */
-  --text-3: #908d86; /* metadata / muted (AA on ink-900) */
-  --text-4: #5f5d58; /* faint / disabled */
-  --on-gold: #1a1407; /* text on gold fills */
+  --text-1: #f7f5ff;
+  --text-2: #c4bfce;
+  --text-3: #918b9d;
+  --text-4: #625d6d;
+  --on-gold: #ffffff;
   --on-emerald: #eafff4;
   --on-oxblood: #ffece9;
 
   /* ---- Champagne gold accent ------------------------------------------ */
-  --gold-50: #f7efd9;
-  --gold-100: #f0e4c2;
-  --gold-200: #e7d4a3;
-  --gold-300: #ddc488; /* bright hover */
-  --gold-400: #d2b576;
-  --gold-500: #c9a86a; /* PRIMARY accent */
-  --gold-600: #b2925a;
-  --gold-700: #8c7142; /* deep bronze — borders/pressed */
-  --gold-800: #5f4d2e;
-  --gold-glow: rgba(201, 168, 106, 0.16);
-  --gold-wash: rgba(201, 168, 106, 0.08);
+  --gold-50: #f7f2ff;
+  --gold-100: #eee4ff;
+  --gold-200: #ddc8ff;
+  --gold-300: #c4a4ff;
+  --gold-400: #ab7cff;
+  --gold-500: #9259ed;
+  --gold-600: #7d42d0;
+  --gold-700: #6332a8;
+  --gold-800: #452377;
+  --gold-glow: rgba(157, 99, 255, 0.26);
+  --gold-wash: rgba(157, 99, 255, 0.11);
 
   /* ---- Semantic (deep, desaturated; used sparingly) ------------------- */
   --emerald-300: #7fd3a8;
@@ -122,7 +122,7 @@
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
   --shadow-md: 0 12px 34px -16px rgba(0, 0, 0, 0.75);
   --shadow-pop: 0 24px 60px -24px rgba(0, 0, 0, 0.82), 0 2px 8px rgba(0, 0, 0, 0.5);
-  --shadow-gold: 0 0 0 1px var(--line-gold), 0 14px 40px -22px var(--gold-glow);
+  --shadow-gold: 0 0 0 1px var(--line-gold), 0 16px 46px -18px rgba(132, 72, 237, 0.42);
 
   /* ---- Motion --------------------------------------------------------- */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);

@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { NavLink, Link, Outlet, useLocation } from 'react-router-dom';
-import { Menu, X, Ticket } from 'lucide-react';
+import { Menu, X, Ticket, Sparkles } from 'lucide-react';
 import { Wordmark } from '../components/brand/Wordmark';
 import { buttonClass } from '../components/ui/Button';
 import { cn } from '../lib/cn';
+import { AnimatedBackground } from '../components/layout/AnimatedBackground';
 
 const LINKS = [
   { to: '/', label: 'Home', end: true },
@@ -20,6 +21,7 @@ export function PublicLayout() {
 
   return (
     <>
+      <AnimatedBackground />
       <a href="#main" className="skip-link">Skip to content</a>
       <header className="pubnav">
         <div className="pubnav__inner">
@@ -42,7 +44,7 @@ export function PublicLayout() {
 
           <div className="pubnav__right">
             <Link to="/events" className={buttonClass('gold', 'sm')}>
-              Browse events
+              <Sparkles size={14} /> Browse events
             </Link>
             <button
               className="icon-btn icon-btn--plain pubnav__toggle"

@@ -48,6 +48,7 @@
 .btn--gold:hover {
   background: linear-gradient(180deg, var(--gold-300), var(--gold-400));
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.22) inset, 0 14px 34px -16px var(--gold-glow);
+  transform: translateY(-1px);
 }
 
 /* Secondary — quiet outline */
