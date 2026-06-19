@@ -21,6 +21,7 @@ import { LoadingBlock, StateBlock } from '../../components/ui/Feedback';
 import { buttonClass } from '../../components/ui/Button';
 import { formatDateLong, formatLkr, formatTime } from '../../lib/format';
 import { cn } from '../../lib/cn';
+import { ScrollGlowSection } from '../../components/motion/ScrollGlowSection';
 
 export default function EventDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -123,34 +124,37 @@ export default function EventDetail() {
       <div className="container container--wide">
         <div className="detail-layout">
           <div>
-            <p className="eyebrow">The night</p>
-            <div className="prose" style={{ marginTop: 'var(--space-5)' }}>
-              <p style={{ fontSize: 'var(--fs-lg)', color: 'var(--text-1)' }}>{event.description}</p>
-            </div>
+            <ScrollGlowSection className="detail-glow detail-glow--description">
+              <p className="eyebrow">The night</p>
+              <div className="prose" style={{ marginTop: 'var(--space-5)' }}>
+                <p style={{ fontSize: 'var(--fs-lg)' }}>{event.description}</p>
+              </div>
+            </ScrollGlowSection>
 
             {event.lineup && event.lineup.length > 0 && (
-              <div style={{ marginTop: 'var(--space-9)' }}>
+              <ScrollGlowSection className="detail-glow">
                 <p className="eyebrow">Line-up</p>
                 <div className="row row--wrap" style={{ gap: 'var(--space-2)', marginTop: 'var(--space-4)' }}>
                   {event.lineup.map((act) => (
                     <span key={act} className="chip" style={{ cursor: 'default' }}>{act}</span>
                   ))}
                 </div>
-              </div>
+              </ScrollGlowSection>
             )}
 
-            <div style={{ marginTop: 'var(--space-9)' }}>
+            <ScrollGlowSection className="detail-glow">
               <p className="eyebrow">Good to know</p>
               <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))', marginTop: 'var(--space-4)', gap: 'var(--space-4)' }}>
                 <Detail icon={<DoorOpen size={16} />} label="Doors" value={event.doorsTime ? `${event.doorsTime}` : 'On arrival'} />
                 <Detail icon={<ShieldCheck size={16} />} label="Entry" value={event.agePolicy ?? 'All welcome'} />
                 <Detail icon={<Shirt size={16} />} label="Dress" value={event.dressCode ?? 'As you are'} />
               </div>
-            </div>
+            </ScrollGlowSection>
           </div>
 
           {/* aside — ticket selection */}
           <aside className="detail-aside">
+            <ScrollGlowSection className="detail-glow--tickets">
             <div className="card card--pad">
               <p className="eyebrow eyebrow--plain" style={{ color: 'var(--text-3)' }}>Tickets</p>
               <div className="stack" style={{ marginTop: 'var(--space-4)', ['--gap' as string]: 'var(--space-3)' }}>
@@ -215,6 +219,7 @@ export default function EventDetail() {
                 Secured by PayHere & Koko · Instant e-tickets
               </p>
             </div>
+            </ScrollGlowSection>
           </aside>
         </div>
       </div>

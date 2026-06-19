@@ -7,6 +7,9 @@ import { Input, Select } from '../ui/Field';
 import { Skeleton, StateBlock } from '../ui/Feedback';
 import { Button } from '../ui/Button';
 import { cn } from '../../lib/cn';
+import { ScrollReveal } from '../motion/ScrollReveal';
+import { StaggerContainer } from '../motion/StaggerContainer';
+import { MarqueeStrip } from '../motion/MarqueeStrip';
 
 type When = NonNullable<EventFilters['when']>;
 type Sort = 'date' | 'price-low' | 'price-high';
@@ -83,8 +86,11 @@ export function EventsDiscovery() {
         </p>
       </div>
 
+      <MarqueeStrip />
+
       <div className="container container--wide discovery__body">
-        <div className="filterbar discovery__filters rise delay-3">
+        <ScrollReveal>
+        <div className="filterbar discovery__filters">
           <div className="filterbar__search">
             <Input type="search" icon={<Search size={17} />} placeholder="Search by name, venue, city or artist" aria-label="Search events" value={searchInput} onChange={(event) => setSearchInput(event.target.value)} />
           </div>
@@ -95,6 +101,7 @@ export function EventsDiscovery() {
             <option value="">Any price</option><option value="5000">Under Rs 5,000</option><option value="10000">Under Rs 10,000</option><option value="25000">Under Rs 25,000</option>
           </Select>
         </div>
+        </ScrollReveal>
 
         <div className="chips discovery__chips" role="group" aria-label="Filter by category">
           {categories.map((item, index) => (
@@ -102,17 +109,19 @@ export function EventsDiscovery() {
           ))}
         </div>
 
+        <ScrollReveal className="results-reveal">
         <div className="results-head">
           <p className="results-head__count" aria-live="polite"><Sparkles size={14} /> {events ? `${results.length} events found` : 'Curating events'}</p>
           <label className="results-head__sort">Sort by
             <select value={sort} onChange={(event) => setSort(event.target.value as Sort)}><option value="date">Date</option><option value="price-low">Price: low</option><option value="price-high">Price: high</option></select>
           </label>
         </div>
+        </ScrollReveal>
 
         {error ? <StateBlock icon={<SlidersHorizontal />} title="We couldn't load events" body="Please refresh to try again." />
           : events === null ? <div className="event-grid">{Array.from({ length: 6 }).map((_, index) => <div className="card" key={index}><Skeleton w="100%" h={240} radius={0} /></div>)}</div>
           : results.length === 0 ? <StateBlock icon={<Search />} title="No events match" body="Try widening your search or clearing a filter." action={<Button variant="outline" onClick={clearFilters}>Clear filters</Button>} />
-          : <div className="event-grid">{results.map((event, index) => <div className="event-reveal" style={{ '--reveal-order': index } as CSSProperties} key={event.id}><EventCard event={event} /></div>)}</div>}
+          : <StaggerContainer className="event-grid">{results.map((event, index) => <div className="event-reveal" style={{ '--reveal-order': index } as CSSProperties} key={event.id}><EventCard event={event} /></div>)}</StaggerContainer>}
       </div>
     </section>
   );

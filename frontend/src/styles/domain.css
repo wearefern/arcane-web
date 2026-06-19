@@ -85,7 +85,7 @@
   box-shadow: inset 0 1px rgba(255,255,255,0.025), 0 22px 60px -42px rgba(115, 56, 220, 0.8);
   transition: border-color var(--dur) var(--ease-out), transform var(--dur-slow) var(--ease-out), box-shadow var(--dur-slow) var(--ease-out);
 }
-.ecard:hover { border-color: var(--line-gold); transform: translateY(-6px); box-shadow: 0 24px 60px -28px rgba(128, 69, 240, 0.42); }
+.ecard:hover { border-color: var(--line-gold); transform: translateY(-6px) scale(1.01); box-shadow: 0 24px 60px -28px rgba(128, 69, 240, 0.42); }
 .ecard:hover .ecard__title { color: var(--gold-100); }
 .ecard:hover .poster::before { transform: scale(1.06); filter: saturate(1.15); }
 .ecard:hover .ecard__arrow { transform: translateX(4px); color: var(--gold-200); }

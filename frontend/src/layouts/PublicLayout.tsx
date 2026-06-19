@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NavLink, Link, Outlet, useLocation } from 'react-router-dom';
 import { Menu, X, Ticket, Sparkles } from 'lucide-react';
 import { Wordmark } from '../components/brand/Wordmark';
 import { buttonClass } from '../components/ui/Button';
 import { cn } from '../lib/cn';
 import { AnimatedBackground } from '../components/layout/AnimatedBackground';
+import { ScrollGlowSection } from '../components/motion/ScrollGlowSection';
 
 const LINKS = [
   { to: '/', label: 'Home', end: true },
@@ -14,16 +15,23 @@ const LINKS = [
 
 export function PublicLayout() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(() => window.scrollY > 20);
   const location = useLocation();
 
   // close the mobile sheet whenever the route changes
   const pathKey = location.pathname;
 
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <>
       <AnimatedBackground />
       <a href="#main" className="skip-link">Skip to content</a>
-      <header className="pubnav">
+      <header className={cn('pubnav', scrolled && 'is-scrolled')}>
         <div className="pubnav__inner">
           <Link to="/" aria-label="Arcane home">
             <Wordmark />
@@ -83,6 +91,7 @@ export function PublicLayout() {
 
       <footer className="foot">
         <div className="container container--wide">
+          <ScrollGlowSection className="foot__glow">
           <div className="foot__inner">
             <div className="foot__brand">
               <Wordmark />
@@ -107,6 +116,7 @@ export function PublicLayout() {
             <span>© 2025 Arcane. Colombo.</span>
             <span className="mono">Members-first ticketing</span>
           </div>
+          </ScrollGlowSection>
         </div>
       </footer>
     </>
