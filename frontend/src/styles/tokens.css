@@ -25,9 +25,9 @@
 
   /* ---- Text (warm whites → muted grays) ------------------------------- */
   --text-1: #f7f5ff;
-  --text-2: #c4bfce;
-  --text-3: #918b9d;
-  --text-4: #625d6d;
+  --text-2: #d0cad8;
+  --text-3: #aaa3b5;
+  --text-4: #7f788a;
   --on-gold: #ffffff;
   --on-emerald: #eafff4;
   --on-oxblood: #ffece9;
@@ -133,8 +133,8 @@
   --dur-slow: 380ms;
 
   /* ---- Layout --------------------------------------------------------- */
-  --container: 1680px;
-  --container-wide: 1680px;
+  --container: 1280px;
+  --container-wide: 1440px;
   --container-narrow: 760px;
   --container-prose: 640px;
   --nav-h: 72px;

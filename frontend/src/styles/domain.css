@@ -121,6 +121,7 @@
   min-height: 2.16em;
 }
 .ecard__venue { font-size: var(--fs-xs); color: var(--text-3); margin-top: auto; padding-top: var(--space-4); display: flex; align-items: flex-start; gap: 6px; }
+.ecard__venue { line-height: 1.45; }
 .ecard__foot {
   display: flex;
   align-items: center;
@@ -132,6 +133,8 @@
 .ecard__price .from { color: var(--text-3); font-size: var(--fs-xs); margin-right: 4px; }
 .ecard__price .amt { font-family: var(--font-mono); font-weight: 500; }
 .ecard__arrow { color: var(--text-3); transition: transform var(--dur) var(--ease-out), color var(--dur) var(--ease-out); }
+.ecard--skeleton { pointer-events: none; }
+.ecard__skeleton-poster { width: 100%; aspect-ratio: 16 / 10; border-radius: 0; }
 
 /* ---- Featured event card (marquee) ---------------------------------- */
 .feature {
@@ -200,7 +203,7 @@
   font-size: var(--fs-2xs);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--text-4);
+  color: var(--text-3);
 }
 .cred-cell__value { font-size: var(--fs-sm); color: var(--text-1); margin-top: 5px; }
 .cred-cell__value--mono { font-family: var(--font-mono); }

@@ -123,7 +123,7 @@ export default function EventDetail() {
       {/* ---- Body + ticket selection ---- */}
       <div className="container container--wide">
         <div className="detail-layout">
-          <div>
+          <div className="detail-content">
             <ScrollGlowSection className="detail-glow detail-glow--description">
               <p className="eyebrow">The night</p>
               <div className="prose" style={{ marginTop: 'var(--space-5)' }}>
@@ -132,7 +132,7 @@ export default function EventDetail() {
             </ScrollGlowSection>
 
             {event.lineup && event.lineup.length > 0 && (
-              <ScrollGlowSection className="detail-glow">
+              <ScrollGlowSection className="detail-glow detail-glow--lineup">
                 <p className="eyebrow">Line-up</p>
                 <div className="row row--wrap" style={{ gap: 'var(--space-2)', marginTop: 'var(--space-4)' }}>
                   {event.lineup.map((act) => (
@@ -142,9 +142,9 @@ export default function EventDetail() {
               </ScrollGlowSection>
             )}
 
-            <ScrollGlowSection className="detail-glow">
+            <ScrollGlowSection className="detail-glow detail-glow--info">
               <p className="eyebrow">Good to know</p>
-              <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))', marginTop: 'var(--space-4)', gap: 'var(--space-4)' }}>
+              <div className="grid detail-info-grid">
                 <Detail icon={<DoorOpen size={16} />} label="Doors" value={event.doorsTime ? `${event.doorsTime}` : 'On arrival'} />
                 <Detail icon={<ShieldCheck size={16} />} label="Entry" value={event.agePolicy ?? 'All welcome'} />
                 <Detail icon={<Shirt size={16} />} label="Dress" value={event.dressCode ?? 'As you are'} />
@@ -174,7 +174,7 @@ export default function EventDetail() {
                     >
                       <div style={{ minWidth: 0 }}>
                         <div className="t-1" style={{ fontWeight: 500 }}>{t.name}</div>
-                        <div className="meta clamp-2" style={{ marginTop: 4 }}>{t.description}</div>
+                        <div className="meta tickettype__description">{t.description}</div>
                         {!disabled && avail <= 40 && (
                           <div style={{ marginTop: 'var(--space-3)', maxWidth: 140 }}>
                             <Meter value={avail} max={t.totalQty} />
@@ -229,7 +229,7 @@ export default function EventDetail() {
 
 function Detail({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
   return (
-    <div className="card card--pad-sm" style={{ background: 'var(--ink-850)' }}>
+    <div className="card card--pad-sm detail-info-card" style={{ background: 'var(--ink-850)' }}>
       <div className="row" style={{ gap: 8, color: 'var(--gold-600)' }}>{icon}<span className="cred-cell__label" style={{ color: 'var(--text-3)' }}>{label}</span></div>
       <div className="t-1" style={{ marginTop: 'var(--space-2)', fontSize: 'var(--fs-sm)' }}>{value}</div>
     </div>

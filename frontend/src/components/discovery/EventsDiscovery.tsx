@@ -119,10 +119,27 @@ export function EventsDiscovery() {
         </ScrollReveal>
 
         {error ? <StateBlock icon={<SlidersHorizontal />} title="We couldn't load events" body="Please refresh to try again." />
-          : events === null ? <div className="event-grid">{Array.from({ length: 6 }).map((_, index) => <div className="card" key={index}><Skeleton w="100%" h={240} radius={0} /></div>)}</div>
+          : events === null ? <div className="event-grid">{Array.from({ length: 6 }).map((_, index) => <EventCardSkeleton key={index} />)}</div>
           : results.length === 0 ? <StateBlock icon={<Search />} title="No events match" body="Try widening your search or clearing a filter." action={<Button variant="outline" onClick={clearFilters}>Clear filters</Button>} />
           : <StaggerContainer className="event-grid">{results.map((event, index) => <div className="event-reveal" style={{ '--reveal-order': index } as CSSProperties} key={event.id}><EventCard event={event} /></div>)}</StaggerContainer>}
       </div>
     </section>
+  );
+}
+
+function EventCardSkeleton() {
+  return (
+    <div className="ecard ecard--skeleton" aria-hidden>
+      <Skeleton className="ecard__skeleton-poster" h="auto" radius={0} />
+      <div className="ecard__body">
+        <Skeleton w="28%" h={10} />
+        <Skeleton w="78%" h={24} style={{ marginTop: 'var(--space-4)' }} />
+        <Skeleton w="58%" h={13} style={{ marginTop: 'var(--space-7)' }} />
+      </div>
+      <div className="ecard__foot">
+        <Skeleton w="38%" h={14} />
+        <Skeleton w={18} h={18} radius={99} />
+      </div>
+    </div>
   );
 }

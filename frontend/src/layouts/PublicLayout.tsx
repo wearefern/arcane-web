@@ -111,7 +111,7 @@ export function PublicLayout() {
             </div>
           </div>
           <div className="foot__bar">
-            <span>© 2025 Arcane. Colombo.</span>
+            <span>© 2026 Arcane. Colombo.</span>
             <span className="mono">Members-first ticketing</span>
           </div>
           </ScrollGlowSection>

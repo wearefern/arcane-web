@@ -40,11 +40,12 @@
 
 /* Primary — champagne gold, the one place colour earns its place */
 .btn--gold {
-  background: linear-gradient(180deg, var(--gold-400), var(--gold-500));
+  background: linear-gradient(180deg, #b989ff, var(--gold-500));
   color: var(--on-gold);
   border-color: var(--gold-600);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.18) inset, 0 10px 30px -16px var(--gold-glow);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.28) inset, 0 12px 34px -14px rgba(157, 99, 255, 0.72);
 }
+.btn--gold:focus-visible { outline-color: var(--gold-200); box-shadow: 0 0 0 4px rgba(157, 99, 255, 0.28), 0 14px 36px -14px rgba(157, 99, 255, 0.78); }
 .btn--gold:hover {
   background: linear-gradient(180deg, var(--gold-300), var(--gold-400));
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.22) inset, 0 14px 34px -16px var(--gold-glow);
@@ -86,7 +87,7 @@
 }
 .btn--danger:hover { background: var(--oxblood-wash); border-color: var(--oxblood-500); }
 
-.btn--sm { --btn-h: 36px; padding-inline: var(--space-4); font-size: var(--fs-xs); }
+.btn--sm { --btn-h: 40px; padding-inline: var(--space-4); font-size: var(--fs-xs); }
 .btn--lg { --btn-h: 52px; padding-inline: var(--space-7); font-size: var(--fs-base); }
 .btn--block { width: 100%; }
 .btn--pill { border-radius: var(--r-pill); }
@@ -96,8 +97,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: var(--r-sm);
   border: 1px solid var(--line);
   background: var(--ink-750);
@@ -485,7 +486,7 @@
   overflow: hidden;
 }
 .stepper button {
-  width: 40px;
+  width: 44px;
   height: 44px;
   display: grid;
   place-items: center;
@@ -507,6 +508,11 @@
   text-align: center;
   padding: var(--space-11) var(--space-6);
   gap: var(--space-4);
+}
+.state:not(.card .state) {
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-xl);
+  background: linear-gradient(145deg, rgba(18, 15, 27, 0.66), rgba(8, 7, 12, 0.38));
 }
 .state__icon {
   width: 56px;
@@ -538,7 +544,7 @@
 .skeleton {
   position: relative;
   overflow: hidden;
-  background: var(--ink-750);
+  background: linear-gradient(145deg, rgba(31, 26, 45, 0.92), rgba(17, 14, 25, 0.92));
   border-radius: var(--r-sm);
 }
 .skeleton::after {

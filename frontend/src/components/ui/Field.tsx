@@ -35,10 +35,18 @@ export function Field({
   const autoId = useId();
   const childId = isValidElement(children) ? (children.props as { id?: string }).id : undefined;
   const controlId = htmlFor ?? childId ?? autoId;
-  const control =
-    label && !htmlFor && !childId && isValidElement(children)
-      ? cloneElement(children as ReactElement<{ id?: string }>, { id: controlId })
-      : children;
+  const feedbackId = `${controlId}-feedback`;
+  const control = isValidElement(children)
+    ? cloneElement(children as ReactElement<{
+        id?: string;
+        'aria-invalid'?: boolean;
+        'aria-describedby'?: string;
+      }>, {
+        ...(!childId ? { id: controlId } : {}),
+        ...(error ? { 'aria-invalid': true } : {}),
+        ...((error || helper) ? { 'aria-describedby': feedbackId } : {}),
+      })
+    : children;
 
   return (
     <div className={cn('field', error && 'field--error', className)}>
@@ -51,11 +59,11 @@ export function Field({
       )}
       {control}
       {error ? (
-        <span className="error-text" role="alert">
+        <span className="error-text" id={feedbackId} role="alert">
           <AlertCircle size={13} /> {error}
         </span>
       ) : (
-        helper && <span className="helper">{helper}</span>
+        helper && <span className="helper" id={feedbackId}>{helper}</span>
       )}
     </div>
   );

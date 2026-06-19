@@ -223,8 +223,10 @@
   display: grid;
   place-items: center;
   padding: var(--space-6);
-  background: radial-gradient(circle at 50% 42%, rgba(124, 58, 237, 0.09), transparent 48%);
+  background:
+    linear-gradient(116deg, transparent 42%, rgba(168, 85, 247, 0.07) 50%, transparent 59%),
+    radial-gradient(circle at 50% 42%, rgba(124, 58, 237, 0.14), transparent 48%);
 }
-.auth-card { width: 100%; max-width: 410px; }
+.auth-card { width: 100%; max-width: 410px; background: rgba(15, 13, 22, 0.88); backdrop-filter: blur(20px); border-color: var(--line-strong); }
 .auth-card__head { margin-bottom: var(--space-7); }
-.auth-foot { text-align: center; margin-top: var(--space-6); color: var(--text-4); font-size: var(--fs-xs); }
+.auth-foot { text-align: center; margin-top: var(--space-6); color: var(--text-3); font-size: var(--fs-xs); }

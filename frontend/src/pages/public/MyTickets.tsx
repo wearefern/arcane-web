@@ -76,7 +76,7 @@ export default function MyTickets() {
         </header>
 
         {/* ---- Lookup ---- */}
-        <Card pad="lg" style={{ maxWidth: 640 }}>
+        <Card pad="lg" className="ticket-lookup">
           <form onSubmit={handleSubmit}>
             <div className="stack" style={{ ['--gap' as string]: 'var(--space-5)' }}>
               <Field label="Email" htmlFor="lookup-email" helper="The email used to book.">
@@ -138,10 +138,11 @@ export default function MyTickets() {
               body="Something went wrong on our side. Please try again in a moment."
             />
           ) : results === null ? (
-            // Pre-search: a quiet hint, no clutter.
-            <p className="meta" style={{ textAlign: 'center', padding: 'var(--space-7) 0' }}>
-              Your tickets will appear here once we find them.
-            </p>
+            <StateBlock
+              icon={<TicketIcon />}
+              title="Your night, one search away"
+              body="Enter the email or order reference from your confirmation and your passes will appear here."
+            />
           ) : results.length === 0 ? (
             <StateBlock
               icon={<TicketIcon />}
