@@ -94,6 +94,7 @@ export function ScannerLayout() {
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components -- hook shares the outlet context with <ScannerLayout>
 export function useScanner(): ScannerCtx {
   return useOutletContext<ScannerCtx>();
 }

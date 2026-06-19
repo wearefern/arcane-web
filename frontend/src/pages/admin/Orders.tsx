@@ -44,9 +44,11 @@ export default function Orders() {
 
   useEffect(() => {
     let active = true;
+    /* eslint-disable react-hooks/set-state-in-effect -- intentional reset keyed on filters before fetch */
     setOrders(null);
     setError(false);
     setPage(1); // new filter set → back to the first page
+    /* eslint-enable react-hooks/set-state-in-effect */
     listOrders({ search, status, provider })
       .then((rows) => active && setOrders(rows))
       .catch(() => active && setError(true));
