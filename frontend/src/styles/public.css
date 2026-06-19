@@ -11,11 +11,12 @@
   height: var(--nav-h);
   display: flex;
   align-items: center;
-  background: rgba(10, 10, 11, 0.72);
+  background: rgba(3, 3, 5, 0.78);
   backdrop-filter: blur(16px) saturate(140%);
   border-bottom: 1px solid var(--line-soft);
 }
 .pubnav__inner {
+  position: relative;
   width: 100%;
   max-width: var(--container-wide);
   margin-inline: auto;
@@ -25,7 +26,7 @@
   justify-content: space-between;
   gap: var(--space-6);
 }
-.pubnav__links { display: flex; align-items: center; gap: var(--space-2); }
+.pubnav__links { position: absolute; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: var(--space-2); }
 .pubnav__link {
   position: relative;
   padding: var(--space-2) var(--space-4);
@@ -43,15 +44,63 @@
   right: var(--space-4);
   bottom: -1px;
   height: 1.5px;
-  background: var(--gold-500);
+  background: linear-gradient(90deg, transparent, var(--gold-300), transparent);
+  box-shadow: 0 0 12px var(--gold-glow);
 }
 .pubnav__right { display: flex; align-items: center; gap: var(--space-3); }
+.pubnav__right .btn { border-radius: var(--r-pill); }
 .pubnav__toggle { display: none; }
 
 @media (max-width: 768px) {
   .pubnav__links,
   .pubnav__right .btn { display: none; }
   .pubnav__toggle { display: inline-flex; }
+}
+
+/* ---- Purple atmospheric discovery ---------------------------------- */
+.atmosphere { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.atmosphere__beam { position: absolute; width: 48vw; height: 110vh; right: -10vw; top: -38vh; background: linear-gradient(150deg, rgba(169, 105, 255, 0.18), transparent 62%); filter: blur(30px); transform: rotate(-12deg); animation: beam-drift 15s ease-in-out infinite alternate; }
+.atmosphere__glow { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .14; animation: glow-drift 18s ease-in-out infinite alternate; }
+.atmosphere__glow--one { width: 34rem; height: 34rem; right: 4%; top: 13%; background: #7c3de0; }
+.atmosphere__glow--two { width: 24rem; height: 24rem; left: -8%; top: 62%; background: #4e278c; animation-delay: -7s; }
+@keyframes beam-drift { to { transform: translate(-3vw, 5vh) rotate(-8deg); opacity: .72; } }
+@keyframes glow-drift { to { transform: translate(4vw, 3vh) scale(1.08); } }
+
+.discovery { position: relative; min-height: 100vh; padding-bottom: var(--space-12); }
+.discovery__hero { min-height: 370px; padding-top: clamp(5rem, 11vw, 8.5rem); padding-bottom: var(--space-10); position: relative; }
+.discovery__hero::after { content: ''; position: absolute; width: 38%; height: 1px; right: 0; bottom: 30%; background: linear-gradient(90deg, transparent, rgba(182, 139, 255, .3), transparent); transform: rotate(-18deg); }
+.discovery__title { margin-top: var(--space-4); font-size: clamp(4rem, 8vw, 7.4rem); letter-spacing: -.045em; }
+.discovery__subtitle { max-width: 55ch; margin-top: var(--space-6); color: var(--text-2); }
+.discovery__body { position: relative; }
+.discovery__filters { padding: var(--space-3); border: 1px solid var(--line); border-radius: var(--r-lg); background: rgba(12, 10, 18, .82); box-shadow: inset 0 1px rgba(255,255,255,.03), 0 22px 70px -45px rgba(142, 73, 255, .7); }
+.discovery__filters .input, .discovery__filters .select { min-height: 52px; background: rgba(18, 15, 27, .9); border-color: var(--line); }
+.discovery__filters .select-wrap { flex: 0 1 180px; }
+.discovery__chips { padding-block: var(--space-6) var(--space-7); }
+.discovery__chips .chip { min-height: 40px; padding-inline: var(--space-5); background: rgba(13, 12, 19, .78); }
+.results-head { border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); padding-block: var(--space-4); margin-bottom: var(--space-7); display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); }
+.results-head__count { color: var(--gold-300); font-family: var(--font-mono); font-size: var(--fs-2xs); letter-spacing: .14em; text-transform: uppercase; display: flex; align-items: center; gap: var(--space-2); }
+.results-head__sort { color: var(--text-3); font-size: var(--fs-xs); display: flex; align-items: center; gap: var(--space-3); }
+.results-head__sort select { color: var(--text-1); background: var(--ink-800); border: 1px solid var(--line); border-radius: var(--r-sm); padding: 8px 30px 8px 12px; }
+.event-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-5); }
+.event-reveal { min-width: 0; animation: card-reveal 620ms var(--ease-out) both; animation-delay: calc(var(--reveal-order) * 70ms); }
+.pill-reveal { animation: card-reveal 420ms var(--ease-out) both; animation-delay: calc(var(--reveal-order) * 45ms + 240ms); }
+@keyframes card-reveal { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 1100px) { .event-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 768px) {
+  .pubnav__links { position: static; transform: none; }
+  .discovery__hero { min-height: 315px; padding-top: var(--space-11); }
+  .filterbar { align-items: stretch; }
+  .discovery__filters .select-wrap { flex: 1 1 45%; }
+}
+@media (max-width: 560px) {
+  .discovery__title { font-size: clamp(3.5rem, 19vw, 5rem); }
+  .event-grid { grid-template-columns: 1fr; }
+  .discovery__filters { width: 100%; max-width: 100%; padding: var(--space-2); }
+  .discovery__filters .filterbar__search, .discovery__filters .select-wrap { flex: 1 1 100%; min-width: 0; max-width: 100%; }
+  .discovery__filters .input, .discovery__filters .select { min-width: 0; max-width: 100%; }
+  .discovery__chips { max-width: 100%; }
+  .results-head { align-items: flex-start; flex-wrap: wrap; }
 }
 
 /* mobile menu sheet */

@@ -92,7 +92,7 @@ export const EVENTS: EventItem[] = [
     category: 'Day Party',
     tone: 'slate',
     status: 'published',
-    featured: false,
+    featured: true,
     eventDate: '2025-08-16T14:00:00+05:30',
     startTime: '14:00',
     endTime: '21:00',

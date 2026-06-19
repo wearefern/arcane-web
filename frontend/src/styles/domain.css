@@ -4,16 +4,16 @@
    ========================================================================= */
 
 /* ---- Wordmark ------------------------------------------------------- */
-.wordmark { display: inline-flex; align-items: center; gap: var(--space-2); }
+.wordmark { display: inline-flex; align-items: center; }
 .wordmark__text {
-  font-family: var(--font-display);
-  font-size: 1.2rem;
-  font-weight: 400;
-  letter-spacing: 0.012em;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.38em;
   color: var(--text-1);
   line-height: 1;
 }
-.wordmark--sm .wordmark__text { font-size: 1.04rem; }
+.wordmark--sm .wordmark__text { font-size: 0.86rem; }
 .wordmark__suffix {
   font-family: var(--font-mono);
   font-size: var(--fs-2xs);
@@ -42,6 +42,7 @@
   background:
     radial-gradient(130% 95% at 16% 0%, var(--pg, rgba(201, 168, 106, 0.2)), transparent 55%),
     linear-gradient(157deg, var(--p1, #2a2113), var(--p2, #0c0b08) 64%);
+  transition: transform 900ms var(--ease-out), filter 500ms var(--ease-out);
 }
 .poster::after {
   content: '';
@@ -65,12 +66,12 @@
   letter-spacing: -0.04em;
 }
 
-.poster--amber { --p1: #2a2113; --p2: #0c0b08; --pg: rgba(201, 168, 106, 0.22); }
-.poster--emerald { --p1: #11261f; --p2: #070f0c; --pg: rgba(58, 155, 114, 0.18); }
-.poster--slate { --p1: #161f2b; --p2: #080a0e; --pg: rgba(122, 146, 173, 0.18); }
-.poster--crimson { --p1: #291414; --p2: #0d0707; --pg: rgba(194, 86, 78, 0.18); }
-.poster--violet { --p1: #1d1726; --p2: #0a0810; --pg: rgba(150, 120, 200, 0.16); }
-.poster--mono { --p1: #1c1c20; --p2: #08080a; --pg: rgba(201, 168, 106, 0.1); }
+.poster--amber { --p1: #251743; --p2: #08060e; --pg: rgba(188, 129, 255, 0.3); }
+.poster--emerald { --p1: #17122c; --p2: #08060f; --pg: rgba(126, 92, 210, 0.26); }
+.poster--slate { --p1: #181329; --p2: #07070d; --pg: rgba(142, 118, 210, 0.24); }
+.poster--crimson { --p1: #28143e; --p2: #0a0610; --pg: rgba(178, 83, 255, 0.25); }
+.poster--violet { --p1: #29164a; --p2: #08050f; --pg: rgba(178, 112, 255, 0.34); }
+.poster--mono { --p1: #181420; --p2: #07070a; --pg: rgba(152, 112, 220, 0.2); }
 
 /* ---- Event card (grid) ---------------------------------------------- */
 .ecard {
@@ -80,13 +81,17 @@
   border: 1px solid var(--line);
   border-radius: var(--r-lg);
   overflow: hidden;
-  transition: border-color var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
+  min-height: 100%;
+  box-shadow: inset 0 1px rgba(255,255,255,0.025), 0 22px 60px -42px rgba(115, 56, 220, 0.8);
+  transition: border-color var(--dur) var(--ease-out), transform var(--dur-slow) var(--ease-out), box-shadow var(--dur-slow) var(--ease-out);
 }
-.ecard:hover { border-color: var(--line-gold); transform: translateY(-4px); }
+.ecard:hover { border-color: var(--line-gold); transform: translateY(-6px); box-shadow: 0 24px 60px -28px rgba(128, 69, 240, 0.42); }
 .ecard:hover .ecard__title { color: var(--gold-100); }
+.ecard:hover .poster::before { transform: scale(1.06); filter: saturate(1.15); }
+.ecard:hover .ecard__arrow { transform: translateX(4px); color: var(--gold-200); }
 .ecard__poster {
   position: relative;
-  aspect-ratio: 5 / 4;
+  aspect-ratio: 16 / 10;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -105,6 +110,8 @@
   padding: 5px 9px;
   border-radius: var(--r-pill);
 }
+.ecard__body { padding: var(--space-5); flex: 1; }
+.ecard__category { color: var(--gold-300); font-family: var(--font-mono); font-size: var(--fs-2xs); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: var(--space-3); }
 .ecard__title {
   font-family: var(--font-display);
   font-size: var(--fs-h3);
@@ -112,7 +119,7 @@
   line-height: 1.08;
   transition: color var(--dur) var(--ease-out);
 }
-.ecard__venue { font-size: var(--fs-xs); color: var(--text-2); margin-top: 4px; display: flex; align-items: center; gap: 5px; }
+.ecard__venue { font-size: var(--fs-xs); color: var(--text-3); margin-top: var(--space-4); display: flex; align-items: center; gap: 6px; }
 .ecard__foot {
   display: flex;
   align-items: center;
@@ -123,7 +130,7 @@
 .ecard__price { font-size: var(--fs-sm); color: var(--text-1); }
 .ecard__price .from { color: var(--text-3); font-size: var(--fs-xs); margin-right: 4px; }
 .ecard__price .amt { font-family: var(--font-mono); font-weight: 500; }
-.ecard__cat { font-size: var(--fs-xs); color: var(--text-3); display: flex; align-items: center; gap: 6px; }
+.ecard__arrow { color: var(--text-3); transition: transform var(--dur) var(--ease-out), color var(--dur) var(--ease-out); }
 
 /* ---- Featured event card (marquee) ---------------------------------- */
 .feature {
