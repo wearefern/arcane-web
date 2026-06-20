@@ -4,9 +4,13 @@
    ========================================================================= */
 
 .admin {
+  position: relative;
+  z-index: 2;
+  isolation: isolate;
   display: grid;
-  grid-template-columns: var(--sidebar-w) 1fr;
+  grid-template-columns: minmax(0, var(--sidebar-w)) minmax(0, 1fr);
   min-height: 100dvh;
+  min-width: 0;
   width: 100%;
   max-width: 100vw;
   overflow-x: clip;
@@ -20,10 +24,18 @@
   background: #0b0b11;
 }
 
+/* The animated atmosphere belongs to public routes only. Without this, its
+   z-index layer can wash over non-positioned admin content and mimic a scrim. */
+html[data-admin-surface='true'] .atmosphere { display: none; }
+html[data-admin-surface='true'],
+html[data-admin-surface='true'] body,
+html[data-admin-surface='true'] #root { max-width: 100%; overflow-x: clip; background: #0b0b11; }
+
 /* ---- Sidebar --------------------------------------------------------- */
 .sidebar {
   position: sticky;
   top: 0;
+  left: 0;
   height: 100dvh;
   display: flex;
   flex-direction: column;
@@ -86,7 +98,7 @@
 .sidebar__user-role { font-size: var(--fs-2xs); color: var(--text-3); font-family: var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; }
 
 /* ---- Topbar ---------------------------------------------------------- */
-.admin-main { display: flex; flex-direction: column; width: 100%; max-width: 100%; min-width: 0; overflow: hidden; background: #0b0b11; }
+.admin-main { position: relative; z-index: 1; display: flex; flex-direction: column; width: 100%; max-width: 100%; min-width: 0; overflow: hidden; background: #0b0b11; }
 .topbar {
   position: sticky;
   top: 0;
@@ -108,6 +120,7 @@
 .admin-body > * { min-width: 0; max-width: 100%; }
 .admin .card, .admin .panel, .admin .table-wrap, .admin .table-scroll { min-width: 0; max-width: 100%; }
 .admin .table-scroll { overflow-x: auto; overscroll-behavior-inline: contain; scrollbar-gutter: stable; }
+.admin .table { min-width: 900px; }
 .admin .table th, .admin .table td { vertical-align: middle; }
 
 /* ---- Admin page header ---------------------------------------------- */
@@ -338,18 +351,64 @@
 }
 
 @media (max-width: 560px) {
-  .adminhead { align-items: stretch; gap: var(--space-4); margin-bottom: var(--space-6); }
+  .admin-body { padding-top: var(--space-5); padding-bottom: calc(var(--space-8) + env(safe-area-inset-bottom)); }
+  .adminhead { align-items: stretch; gap: var(--space-4); margin-bottom: var(--space-6); text-align: left; }
   .adminhead__title { font-size: clamp(2rem, 11vw, 2.8rem); }
-  .adminhead__sub { font-size: var(--fs-sm); }
+  .adminhead__sub { max-width: 38ch; font-size: .94rem; line-height: 1.6; }
   .adminhead__actions, .adminhead__actions .btn { width: 100%; }
-  .toolbar { align-items: stretch; }
+  .adminhead__actions .btn { min-height: 48px; justify-content: center; }
+  .toolbar { align-items: stretch; gap: var(--space-3); margin-bottom: var(--space-6); }
   .toolbar__search, .toolbar > .select-wrap, .toolbar__event-select { flex: 1 1 100%; width: 100%; }
-  .table-wrap { border-radius: var(--r-md); }
-  .feed__row { gap: var(--space-3); }
-  .feed__row > :last-child { flex-shrink: 0; }
-  .settings-row { padding-block: var(--space-6); }
+  .admin .input, .admin .select, .admin .textarea { min-height: 50px; font-size: 1rem; }
+
+  .table-wrap { position: relative; width: 100%; border-radius: var(--r-md); }
+  .admin .table-scroll { -webkit-overflow-scrolling: touch; scroll-snap-type: x proximity; }
+  .admin .table { min-width: 920px; font-size: .86rem; }
+  .admin .table th { padding: 14px 16px; }
+  .admin .table td { padding: 16px; vertical-align: top; line-height: 1.5; }
+  .admin .table th:first-child, .admin .table td:first-child { min-width: 190px; }
+  .admin .table .cell-actions { min-width: 132px; }
+  .admin .table .cell-num { text-align: left; }
+  .admin .table th.cell-num { text-align: left; }
+  .table-wrap + .row--between { align-items: stretch; flex-direction: column; gap: var(--space-4); }
+  .table-wrap + .row--between .pager { width: 100%; justify-content: space-between; }
+
+  .feed__row { align-items: flex-start; gap: var(--space-3); }
+  .feed__row > :last-child { flex: 0 0 auto; max-width: 42%; }
+  .feed__row > :last-child .badge { max-width: 100%; }
+
+  .admin .card--pad-lg { padding: var(--space-5); }
+  .admin .card--pad { padding: var(--space-5); }
+  .settings-row { padding-block: var(--space-5); }
+  .admin .settings-row { padding-inline: var(--space-4); }
+  .settings-row__label h4 { font-size: 1.35rem; }
+  .settings-row__label p { line-height: 1.6; }
+  .settings-row__content > div > .row:last-child { width: 100%; }
+  .settings-row__content > div > .row:last-child .btn { width: 100%; }
+  .settings-row__content > .row--between { align-items: flex-start; flex-wrap: wrap; }
+
+  .export-controls { align-items: stretch !important; flex-direction: column; }
+  .export-controls > * { width: 100%; }
+  .export-controls > div:first-child { flex: 0 0 auto !important; }
+  .export-controls .btn { width: 100%; min-height: 48px; }
+
   .form-actions { flex-direction: column-reverse; }
   .form-actions .btn { width: 100%; }
+  .form-main, .form-aside { gap: var(--space-5); }
+  .uploader { padding: var(--space-6) var(--space-4); }
+
+  .modal { max-height: calc(100dvh - 24px); overflow-y: auto; }
+  .modal__head { padding: var(--space-5) var(--space-5) var(--space-3); }
+  .modal__body { padding-inline: var(--space-5); }
+  .modal__foot { padding: var(--space-4) var(--space-5); flex-direction: column-reverse; }
+  .modal__foot .btn { width: 100%; }
+}
+
+@media (max-width: 380px) {
+  .topbar__title { font-size: .66rem; letter-spacing: .12em; }
+  .topbar > a { font-size: .75rem !important; }
+  .adminhead__title { font-size: 2.2rem; }
+  .stat { padding: var(--space-5); }
 }
 
 /* ---- Admin login ----------------------------------------------------- */

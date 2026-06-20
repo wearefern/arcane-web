@@ -120,6 +120,7 @@ export default function Export() {
 
       <Card pad="lg">
         <div
+          className="export-controls"
           style={{
             display: 'flex',
             gap: 'var(--space-5)',

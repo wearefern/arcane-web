@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { NavLink, Outlet, useNavigate, Link } from 'react-router-dom';
+import { useEffect, useLayoutEffect, useState } from 'react';
+import { NavLink, Outlet, useNavigate, useLocation, Link } from 'react-router-dom';
 import {
   LayoutDashboard,
   CalendarDays,
@@ -33,7 +33,21 @@ const NAV = [
 export function AdminLayout() {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
   const user = getCurrentAdmin() ?? { name: 'Imran Wickrama', role: 'owner', email: 'imran@arcane.lk' };
+
+  useEffect(() => {
+    document.documentElement.dataset.adminSurface = 'true';
+    return () => {
+      delete document.documentElement.dataset.adminSurface;
+    };
+  }, []);
+
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    document.documentElement.scrollLeft = 0;
+    document.body.scrollLeft = 0;
+  }, [location.pathname, location.search]);
 
   useEffect(() => {
     if (!open) return;
