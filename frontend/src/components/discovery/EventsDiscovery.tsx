@@ -9,7 +9,6 @@ import { Button } from '../ui/Button';
 import { cn } from '../../lib/cn';
 import { ScrollReveal } from '../motion/ScrollReveal';
 import { StaggerContainer } from '../motion/StaggerContainer';
-import { MarqueeStrip } from '../motion/MarqueeStrip';
 
 type When = NonNullable<EventFilters['when']>;
 type Sort = 'date' | 'price-low' | 'price-high';
@@ -85,8 +84,6 @@ export function EventsDiscovery() {
           Every night on the calendar — curated, intimate, and unlocked the moment you arrive. Filter by what you’re after.
         </p>
       </div>
-
-      <MarqueeStrip />
 
       <div className="container container--wide discovery__body">
         <ScrollReveal>

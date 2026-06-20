@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NavLink, Outlet, useNavigate, Link } from 'react-router-dom';
 import {
   LayoutDashboard,
@@ -35,6 +35,20 @@ export function AdminLayout() {
   const navigate = useNavigate();
   const user = getCurrentAdmin() ?? { name: 'Imran Wickrama', role: 'owner', email: 'imran@arcane.lk' };
 
+  useEffect(() => {
+    if (!open) return;
+    const previousOverflow = document.body.style.overflow;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setOpen(false);
+    };
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', closeOnEscape);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', closeOnEscape);
+    };
+  }, [open]);
+
   function signOut() {
     logoutAdmin();
     navigate('/admin/login');
@@ -42,9 +56,9 @@ export function AdminLayout() {
 
   return (
     <div className="admin">
-      {open && <div className="scrim" style={{ zIndex: 'var(--z-drawer)' }} onClick={() => setOpen(false)} />}
+      {open ? <button className="sidebar-scrim" type="button" aria-label="Close admin navigation" onClick={() => setOpen(false)} /> : null}
 
-      <aside className={cn('sidebar', open && 'is-open')}>
+      <aside id="admin-navigation" className={cn('sidebar', open && 'is-open')} aria-hidden={!open ? undefined : false}>
         <div className="sidebar__brand">
           <Link to="/admin" aria-label="Arcane Admin">
             <Wordmark suffix="Admin" />
@@ -87,7 +101,7 @@ export function AdminLayout() {
       <div className="admin-main">
         <header className="topbar">
           <div className="row">
-            <button className="icon-btn icon-btn--plain topbar__menu" aria-label="Open menu" onClick={() => setOpen(true)}>
+            <button className="icon-btn icon-btn--plain topbar__menu" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} aria-controls="admin-navigation" onClick={() => setOpen((value) => !value)}>
               {open ? <X /> : <Menu />}
             </button>
             <span className="topbar__title">Control Room</span>

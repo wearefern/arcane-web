@@ -19,13 +19,15 @@ export function StatCard({
   foot?: ReactNode;
   accent?: boolean;
 }) {
+  const valueLength = typeof value === 'string' || typeof value === 'number' ? String(value).length : 0;
+
   return (
     <div className={cn('stat', accent && 'stat--accent')}>
       <div className="stat__label">
         {icon}
         {label}
       </div>
-      <div className="stat__value">
+      <div className={cn('stat__value', valueLength >= 10 && 'stat__value--long', valueLength >= 14 && 'stat__value--xlong')}>
         {unit && <span className="unit">{unit}</span>}
         {value}
       </div>

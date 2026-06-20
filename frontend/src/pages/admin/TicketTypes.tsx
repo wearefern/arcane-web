@@ -228,7 +228,7 @@ export default function TicketTypes() {
 
       {/* ---- Event filter ---- */}
       <div className="toolbar">
-        <div style={{ minWidth: 260 }}>
+        <div className="toolbar__event-select">
           <Field label="Event" htmlFor="tt-event-filter">
             <Select
               id="tt-event-filter"
