@@ -4,7 +4,6 @@ import { Menu, X, Ticket, Sparkles } from 'lucide-react';
 import { Wordmark } from '../components/brand/Wordmark';
 import { buttonClass } from '../components/ui/Button';
 import { cn } from '../lib/cn';
-import { ScrollGlowSection } from '../components/motion/ScrollGlowSection';
 
 const LINKS = [
   { to: '/', label: 'Home', end: true },
@@ -98,18 +97,16 @@ export function PublicLayout() {
 
       <footer className="foot">
         <div className="container container--wide">
-          <ScrollGlowSection className="foot__glow">
           <div className="foot__inner">
             <div className="foot__brand">
               <Wordmark />
               <p className="foot__tag">
-                A quiet door to the city's most considered nights. Curated events across Colombo and beyond.
+                Members-only nightlife in Colombo. Real venues, vetted lists, and instant QR entry at the door.
               </p>
             </div>
             <div className="foot__col">
               <h4>Discover</h4>
               <Link to="/events">All events</Link>
-              <Link to="/events">This weekend</Link>
               <Link to="/tickets">My tickets</Link>
             </div>
             <div className="foot__col">
@@ -118,12 +115,16 @@ export function PublicLayout() {
               <a href="#terms">Terms of entry</a>
               <a href="#privacy">Privacy</a>
             </div>
+            <div className="foot__col">
+              <h4>Contact</h4>
+              <a href="mailto:hello@arcane.lk">hello@arcane.lk</a>
+              <a href="https://instagram.com/arcane" target="_blank" rel="noreferrer">Instagram</a>
+            </div>
           </div>
           <div className="foot__bar">
             <span>© 2026 Arcane. Colombo.</span>
             <span className="mono">Members-first ticketing</span>
           </div>
-          </ScrollGlowSection>
         </div>
       </footer>
     </>

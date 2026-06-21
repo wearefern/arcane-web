@@ -9,7 +9,7 @@ export function EventCard({ event }: { event: EventItem }) {
   const soldOut = event.ticketsSold >= event.capacity;
   return (
     <Link to={`/events/${event.slug}`} className="ecard" aria-label={`${event.title} — ${event.venue}, ${event.city}`}>
-      <EventPoster tone={event.tone} watermark={event.title.charAt(0)} className="ecard__poster">
+      <EventPoster tone={event.tone} image={event.image} watermark={event.title.charAt(0)} className="ecard__poster">
         <div className="ecard__poster-top">
           <span className="ecard__date">{formatDateShort(event.eventDate)}</span>
           {event.featured ? (

@@ -66,6 +66,15 @@
   letter-spacing: -0.04em;
 }
 
+/* Real event photography, kept dark enough for overlaid text. */
+.poster--photo::before {
+  background:
+    linear-gradient(160deg, rgba(7, 6, 13, 0.34), rgba(7, 6, 13, 0.86) 92%),
+    var(--poster-img) center / cover no-repeat;
+}
+.poster--photo::after { background: radial-gradient(150% 130% at 50% 132%, rgba(0, 0, 0, 0.55), transparent 60%); }
+.ecard:hover .poster--photo::before { transform: scale(1.05); filter: none; }
+
 .poster--amber { --p1: #251743; --p2: #08060e; --pg: rgba(188, 129, 255, 0.3); }
 .poster--emerald { --p1: #17122c; --p2: #08060f; --pg: rgba(126, 92, 210, 0.26); }
 .poster--slate { --p1: #181329; --p2: #07070d; --pg: rgba(142, 118, 210, 0.24); }
@@ -113,12 +122,14 @@
 .ecard__body { padding: var(--space-5); flex: 1; display: flex; flex-direction: column; }
 .ecard__category { color: var(--gold-300); font-family: var(--font-mono); font-size: var(--fs-2xs); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: var(--space-3); }
 .ecard__title {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
+  font-weight: 600;
   font-size: var(--fs-h3);
   color: var(--text-1);
-  line-height: 1.08;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
   transition: color var(--dur) var(--ease-out);
-  min-height: 2.16em;
+  min-height: 2.24em;
 }
 .ecard__venue { font-size: var(--fs-xs); color: var(--text-3); margin-top: auto; padding-top: var(--space-4); display: flex; align-items: flex-start; gap: 6px; }
 .ecard__venue { line-height: 1.45; }
