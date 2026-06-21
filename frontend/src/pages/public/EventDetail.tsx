@@ -102,7 +102,7 @@ export default function EventDetail() {
         </Link>
 
         <div className="detail-banner">
-          <EventPoster tone={event.tone} watermark={event.title.charAt(0)} style={{ position: 'absolute', inset: 0 }} />
+          <EventPoster tone={event.tone} image={event.image} watermark={event.title.charAt(0)} style={{ position: 'absolute', inset: 0 }} />
           {event.featured && (
             <span style={{ position: 'absolute', top: 'var(--space-6)', left: 'var(--space-6)' }}>
               <Badge tone="gold" dot>Featured</Badge>

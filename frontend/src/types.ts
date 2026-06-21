@@ -33,6 +33,9 @@ export interface EventItem {
   city: string;
   category: string;
   tone: EventTone;
+  /** Optional event photography (e.g. an Unsplash URL). Falls back to the
+   *  duotone poster placeholder when absent. */
+  image?: string;
   status: EventStatus;
   featured: boolean;
   eventDate: string; // ISO date

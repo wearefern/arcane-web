@@ -17,11 +17,11 @@
   --ink-650: #211d30;
   --ink-600: #2b2540;
 
-  /* ---- Lines & borders (light over dark) ------------------------------ */
-  --line-soft: rgba(201, 184, 255, 0.07);
-  --line: rgba(201, 184, 255, 0.13);
-  --line-strong: rgba(201, 184, 255, 0.24);
-  --line-gold: rgba(174, 137, 255, 0.48);
+  /* ---- Lines & borders (neutral light over dark — structure, not glow) - */
+  --line-soft: rgba(255, 255, 255, 0.06);
+  --line: rgba(255, 255, 255, 0.10);
+  --line-strong: rgba(255, 255, 255, 0.20);
+  --line-gold: rgba(174, 137, 255, 0.45);
 
   /* ---- Text (warm whites → muted grays) ------------------------------- */
   --text-1: #f7f5ff;
@@ -67,9 +67,12 @@
   --slate-wash: rgba(122, 146, 173, 0.12);
 
   /* ---- Typography ----------------------------------------------------- */
+  /* Albert Sans leads (UI, body, headings). Fraunces is a restrained
+     editorial accent only. IBM Plex Mono is a real monospace for the
+     technical roles — prices, codes, dates, eyebrows, table figures. */
   --font-display: 'Fraunces', 'Times New Roman', Georgia, serif;
   --font-sans: 'Albert Sans', system-ui, sans-serif;
-  --font-mono: 'Albert Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', 'Cascadia Code', 'Roboto Mono', monospace;
 
   /* fluid type scale */
   --fs-display: clamp(2.85rem, 1.6rem + 5.4vw, 5.5rem);
@@ -80,8 +83,9 @@
   --fs-lg: 1.0625rem;
   --fs-base: 0.975rem;
   --fs-sm: 0.875rem;
-  --fs-xs: 0.785rem;
-  --fs-2xs: 0.7rem;
+  --fs-xs: 0.8125rem;
+  --fs-2xs: 0.75rem;
+  --fs-label: 0.74rem; /* tracked uppercase eyebrows — the floor for tracked type */
 
   --lh-tight: 1.08;
   --lh-snug: 1.28;
@@ -91,8 +95,9 @@
   --tracking-tight: -0.02em;
   --tracking-snug: -0.01em;
   --tracking-wide: 0.04em;
-  --tracking-eyebrow: 0.22em;
-  --tracking-wordmark: 0.42em;
+  --tracking-eyebrow: 0.16em;
+  --tracking-label: 0.14em;
+  --tracking-wordmark: 0.38em;
 
   /* ---- Spacing scale (4px base) --------------------------------------- */
   --space-1: 0.25rem;
@@ -158,7 +163,8 @@
 @media (min-width: 1440px) { :root { --page-gutter: 72px; } }
 @media (max-width: 639px) {
   :root {
-    --fs-xs: 0.875rem;
-    --fs-2xs: 0.875rem;
+    --fs-xs: 0.8125rem;
+    --fs-2xs: 0.8125rem;
+    --fs-label: 0.78rem;
   }
 }
