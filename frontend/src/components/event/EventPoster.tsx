@@ -6,20 +6,25 @@ import { cn } from '../../lib/cn';
  *  Deterministic per tone — never bright, always dark enough for overlaid text. */
 export function EventPoster({
   tone,
+  image,
   watermark,
   className,
   children,
   style,
 }: {
   tone: EventTone;
+  image?: string;
   watermark?: string;
   className?: string;
   children?: ReactNode;
   style?: CSSProperties;
 }) {
+  const posterStyle = image
+    ? ({ ...style, '--poster-img': `url(${image})` } as CSSProperties)
+    : style;
   return (
-    <div className={cn('poster', `poster--${tone}`, className)} style={style}>
-      {watermark && (
+    <div className={cn('poster', `poster--${tone}`, image && 'poster--photo', className)} style={posterStyle}>
+      {watermark && !image && (
         <span className="poster__watermark" aria-hidden>
           {watermark}
         </span>
